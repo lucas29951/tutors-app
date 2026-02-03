@@ -11,6 +11,7 @@ El proyecto se desarrolla con fines académicos y contempla tanto el backend com
 Toda la documentación se encuentra organizada dentro de este repositorio:
 
 - 📘 [Investigación de aplicaciones similares](/docs/RESEARCH.md)
+- 🧩 [Análisis del sistema](/docs/SYSTEM_ANALYSIS.md)
 
 ---
 
