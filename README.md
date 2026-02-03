@@ -1,69 +1,25 @@
-# 📚 TeachMe – App de Tutorías y Clases Particulares
+# 📚 TeachMe
 
-TeachMe es una aplicación móvil Android desarrollada con el objetivo de conectar **alumnos** con **tutores** y brindar clases particulares en distintas materias.
+TeachMe es una aplicación móvil de tutorías y clases particulares,  orientada a estudiantes que permite buscar tutores, solicitar clases y gestionar el aprendizaje de forma simple e intuitiva.
 
-La app permite buscar tutores según la materia, visualizar información básica del tutor, consultar disponibilidad y gestionar clases de manera simple e intuitiva.
-
----
-
-## 🧠 Funcionamiento General
-
-- Los **tutores** se registran con sus datos, materias que enseñan y disponibilidad horaria.
-- Los **alumnos** pueden buscar tutores por materia.
-- Se pueden reservar clases y consultar su estado.
-- La información se obtiene desde un backend REST y se almacena localmente para su uso en la app.
+El proyecto se desarrolla con fines académicos y contempla tanto el backend como la aplicación móvil.
 
 ---
 
-## 🎯 Objetivo del Proyecto
+## 📂 Documentación del proyecto
 
-El objetivo principal de TeachMe es aplicar y consolidar los conocimientos adquiridos durante la carrera, implementando:
-
-- Desarrollo de aplicaciones Android
-- Arquitectura MVVM
-- Persistencia de datos local y remota
-- Consumo de APIs REST
-- Uso de mapas y geolocalización
-- Buenas prácticas de diseño y organización del código
+Toda la documentación se encuentra organizada dentro de este repositorio:
 
 ---
 
-## 🛠 Tecnologías Utilizadas
+## 🛠️ Tecnologías utilizadas
 
-### 📱 Android
-- Android Studio
-- Java
-- Arquitectura MVVM
-- Room (SQLite)
-- Fragments y Navigation Component
-- SharedPreferences
-- Consumo de APIs REST
-
-### 🌐 Backend
-- Node.js
-- Express
-- MySQL
-- API REST
+- Backend: Node.js + Express  
+- Base de datos: MySQL  
+- Aplicación móvil: Android (Java + Room)
 
 ---
 
-## 📂 Estructura del Repositorio
+## 📌 Estado del proyecto
 
-El repositorio contiene:
-
-- Código fuente de la aplicación Android
-- Código del backend
-- Documentación del proyecto
-- Análisis y diseño de la base de datos
-
----
-
-## 👤 Autor
-
-**Lucas Rodriguez**
-
----
-
-## 📌 Estado del Proyecto
-
-🚧 En desarrollo
+En desarrollo.
