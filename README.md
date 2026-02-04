@@ -12,6 +12,7 @@ Toda la documentación se encuentra organizada dentro de este repositorio:
 
 - 📘 [Investigación de aplicaciones similares](/docs/RESEARCH.md)
 - 🧩 [Análisis del sistema](/docs/SYSTEM_ANALYSIS.md)
+- 🗄️ [Diseño de la base de datos](/docs/DATABASE.md)
 
 ---
 
