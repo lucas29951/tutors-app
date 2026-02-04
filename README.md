@@ -14,6 +14,7 @@ Toda la documentación se encuentra organizada dentro de este repositorio:
 - 🧩 [Análisis del sistema](/docs/SYSTEM_ANALYSIS.md)
 - 🗄️ [Diseño de la base de datos](/docs/DATABASE.md)
 - 🎨 [Diseño de la aplicación](/docs/DESIGN.md)
+- ⚙️ [Backend y API](/docs/BACKEND.md)
 
 ---
 
