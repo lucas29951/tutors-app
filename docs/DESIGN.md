@@ -1,4 +1,4 @@
-# 🎨 Diseño de la Aplicación – TeachMe
+# 🎨 Diseño de la Aplicación
 
 En esta sección se documenta el diseño visual y funcional de la aplicación **TeachMe**, incluyendo la estructura de la interfaz, la navegación y la disposición de los elementos visuales utilizando la herramienta **Figma**.
 

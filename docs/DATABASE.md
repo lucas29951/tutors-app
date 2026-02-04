@@ -1,4 +1,4 @@
-# 🗄️ Diseño de la Base de Datos – TeachMe
+# 🗄️ Diseño de la Base de Datos
 
 Este documento describe el diseño de la base de datos utilizada en el proyecto **TeachMe**.
 La base de datos fue diseñada teniendo en cuenta los actores del sistema, los requerimientos funcionales y la necesidad de mantener una estructura clara y escalable.
