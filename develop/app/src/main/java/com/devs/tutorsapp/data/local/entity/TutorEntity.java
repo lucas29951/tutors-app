@@ -12,21 +12,19 @@ public class TutorEntity {
     private String nombre;
     private String apellido;
     private String email;
-    private String password;
     private String telefono;
+    private String direccion;
+    private String foto;
     private String descripcion;
-    private double latitud;
-    private double longitud;
 
-    public TutorEntity(String nombre, String apellido, String email, String password, String telefono, String descripcion, double latitud, double longitud) {
+    public TutorEntity(String nombre, String apellido, String email, String telefono, String descripcion, String foto, String direccion) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
-        this.password = password;
         this.telefono = telefono;
+        this.direccion = direccion;
         this.descripcion = descripcion;
-        this.latitud = latitud;
-        this.longitud = longitud;
+        this.foto = foto;
     }
 
     public int getTutor_id() {
@@ -61,14 +59,6 @@ public class TutorEntity {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getTelefono() {
         return telefono;
     }
@@ -85,19 +75,19 @@ public class TutorEntity {
         this.descripcion = descripcion;
     }
 
-    public double getLatitud() {
-        return latitud;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public void setLatitud(double latitud) {
-        this.latitud = latitud;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
-    public double getLongitud() {
-        return longitud;
+    public String getFoto() {
+        return foto;
     }
 
-    public void setLongitud(double longitud) {
-        this.longitud = longitud;
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 }
