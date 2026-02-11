@@ -26,8 +26,7 @@ public class DisponibilidadEntity {
     private String horaInicio;
     private String horaFin;
 
-    public DisponibilidadEntity(int disponibilidad_id, int tutor_id, String diaSemana, String horaInicio, String horaFin) {
-        this.disponibilidad_id = disponibilidad_id;
+    public DisponibilidadEntity(int tutor_id, String diaSemana, String horaInicio, String horaFin) {
         this.tutor_id = tutor_id;
         this.diaSemana = diaSemana;
         this.horaInicio = horaInicio;
