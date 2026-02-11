@@ -14,13 +14,17 @@ public class AlumnoEntity {
     private String email;
     private String password;
     private String telefono;
+    private String direccion;
+    private String foto;
 
-    public AlumnoEntity(String nombre, String apellido, String email, String password, String telefono) {
+    public AlumnoEntity(String nombre, String apellido, String email, String password, String telefono, String direccion, String foto) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.password = password;
         this.telefono = telefono;
+        this.direccion = direccion;
+        this.foto = foto;
     }
 
     public int getAlumno_id() {
@@ -69,5 +73,21 @@ public class AlumnoEntity {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 }
