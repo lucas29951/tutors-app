@@ -43,15 +43,17 @@ public class ClaseEntity {
     private int materia_id;
 
     private String fecha;
-    private String hora;
+    private String hora_inicio;
+    private int duracion;
     private String estado;
 
-    public ClaseEntity(int alumno_id, int tutor_id, int materia_id, String fecha, String hora, String estado) {
+    public ClaseEntity(int alumno_id, int tutor_id, int materia_id, String fecha, String hora_inicio, int duracion, String estado) {
         this.alumno_id = alumno_id;
         this.tutor_id = tutor_id;
         this.materia_id = materia_id;
         this.fecha = fecha;
-        this.hora = hora;
+        this.hora_inicio = hora_inicio;
+        this.duracion = duracion;
         this.estado = estado;
     }
 
@@ -95,12 +97,20 @@ public class ClaseEntity {
         this.fecha = fecha;
     }
 
-    public String getHora() {
-        return hora;
+    public String getHora_inicio() {
+        return hora_inicio;
     }
 
-    public void setHora(String hora) {
-        this.hora = hora;
+    public void setHora_inicio(String hora_inicio) {
+        this.hora_inicio = hora_inicio;
+    }
+
+    public int getDuracion() {
+        return duracion;
+    }
+
+    public void setDuracion(int duracion) {
+        this.duracion = duracion;
     }
 
     public String getEstado() {
