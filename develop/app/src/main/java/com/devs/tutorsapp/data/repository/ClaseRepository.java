@@ -1,0 +1,40 @@
+package com.devs.tutorsapp.data.repository;
+
+import java.util.concurrent.Executors;
+import java.util.concurrent.ExecutorService;
+import java.util.List;
+import android.content.Context;
+
+import com.devs.tutorsapp.data.local.dao.ClaseDao;
+import com.devs.tutorsapp.data.local.database.AppDatabase;
+import com.devs.tutorsapp.data.local.entity.ClaseEntity;
+
+public class ClaseRepository {
+
+    private final ClaseDao claseDao;
+    private final ExecutorService executorService;
+
+    public ClaseRepository(Context context) {
+        AppDatabase db = AppDatabase.getInstance(context);
+        claseDao = db.claseDao();
+        executorService = Executors.newSingleThreadExecutor();
+    }
+
+    public void crearClase(ClaseEntity clase) {
+        executorService.execute(() -> claseDao.insertClase(clase));
+    }
+
+    public void obtenerClasesPorAlumno(int alumnoId, RepositoryCallback<List<ClaseEntity>> callback) {
+        executorService.execute(() -> {
+            List<ClaseEntity> lista = (claseDao.getClasesByAlumnoId(alumnoId)).getValue();
+            callback.onSuccess(lista);
+        });
+    }
+
+    public void obtenerClasesPorTutor(int tutorId, RepositoryCallback<List<ClaseEntity>> callback) {
+        executorService.execute(() -> {
+            List<ClaseEntity> lista = (claseDao.getClasesByTutorId(tutorId)).getValue();
+            callback.onSuccess(lista);
+        });
+    }
+}
