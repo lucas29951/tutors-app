@@ -1,3 +1,23 @@
 <resources>
-    <string name="app_name">tutorsapp</string>
+    <string name="app_name">TeachMe</string>
+
+    <string name="app_subtitle">Find the perfect tutor for you</string>
+    <string name="main_btn_signin">Sign In</string>
+    <string name="main_btn_register">Register</string>
+
+    <string name="login_title">Welcome back</string>
+    <string name="ph_email">Email</string>
+    <string name="ph_password">Password</string>
+    <string name="lbl_remember_me">Remember me</string>
+    <string name="lbl_forgot_password">Forgot your password?</string>
+    <string name="btn_login">Log In</string>
+    <string name="lbl_signup">Dont have an account? Sign up</string>
+
+    <string name="register_title">Sign Up</string>
+    <string name="ph_first_name">First Name</string>
+    <string name="ph_last_name">Last Name</string>
+    <string name="ph_confirm_password">Confirm Password</string>
+    <string name="btn_create_account">Create Account</string>
+    <string name="lbl_signin">Already have an account? Log in</string>
+
 </resources>
