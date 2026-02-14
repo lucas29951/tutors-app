@@ -51,6 +51,14 @@ public class SharedPrefManager {
         return prefs.getString(KEY_ALUMNO_EMAIL, "");
     }
 
+    public AlumnoSession getAlumnoSession() {
+        return new AlumnoSession(getAlumnoId(), getAlumnoNombre(), getAlumnoEmail());
+    }
+
+    public boolean hasValidUser() {
+        return isLoggedIn() && getAlumnoId() != -1;
+    }
+
     public void logout() {
         prefs.edit().clear().apply();
     }
