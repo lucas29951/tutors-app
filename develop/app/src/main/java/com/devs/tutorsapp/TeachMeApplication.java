@@ -15,6 +15,7 @@ public class TeachMeApplication extends Application {
         android.util.Log.d("devtest", "Application iniciada");
 
         database = AppDatabase.getInstance(this);
+        database.materiaDao().getAllMaterias();
         android.util.Log.d("devtest", "Base de datos inicializada");
     }
 
