@@ -32,7 +32,7 @@ public class AuthRepository {
             AlumnoEntity alumno = new AlumnoEntity(nombre, apellido, email, password, telefono, direccion, foto);
 
             alumnoDao.insertAlumno(alumno);
-            callback.onSuccess("Registro exitoso");
+            callback.onSuccess(alumno);
         });
     }
 
@@ -50,7 +50,7 @@ public class AuthRepository {
                 return;
             }
 
-            callback.onSuccess("Login exitoso");
+            callback.onSuccess(alumno);
         });
     }
 }
