@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/nav_inicio">
+
+    <fragment
+        android:id="@+id/nav_inicio"
+        android:name="com.devs.tutorsapp.ui.home.HomeFragment"
+        android:label="Home"/>
+
+    <fragment
+        android:id="@+id/nav_tutores"
+        android:name="com.devs.tutorsapp.ui.tutor.TutorFragment"
+        android:label="Tutor"/>
+
+    <fragment
+        android:id="@+id/nav_clases"
+        android:name="com.devs.tutorsapp.ui.clase.ClaseFragment"
+        android:label="Clase"/>
+
+    <fragment
+        android:id="@+id/nav_perfil"
+        android:name="com.devs.tutorsapp.ui.perfil.PerfilFragment"
+        android:label="Perfil"/>
+
+</navigation>
