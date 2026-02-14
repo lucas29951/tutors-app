@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.devs.tutorsapp.MainActivity;
 import com.devs.tutorsapp.R;
+import com.devs.tutorsapp.ui.home.HomeActivity;
 import com.devs.tutorsapp.ui.viewmodel.AuthViewModel;
 import com.devs.tutorsapp.utils.SharedPrefManager;
 
@@ -52,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
 
             SharedPrefManager.getInstance(this).saveLogin(alumno.getAlumno_id(), alumno.getNombre(), alumno.getEmail());
 
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
             startActivity(intent);
             finish();
         });
