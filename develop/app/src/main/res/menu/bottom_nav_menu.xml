@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_inicio"
+        android:icon="@drawable/home_24px"
+        android:title="Inicio"/>
+
+    <item
+        android:id="@+id/nav_tutores"
+        android:icon="@drawable/search_24px"
+        android:title="Tutores"/>
+
+    <item
+        android:id="@+id/nav_clases"
+        android:icon="@drawable/calendar_month_24px"
+        android:title="Mis Clases"/>
+
+    <item
+        android:id="@+id/nav_perfil"
+        android:icon="@drawable/person_24px"
+        android:title="Perfil"/>
+
+</menu>
