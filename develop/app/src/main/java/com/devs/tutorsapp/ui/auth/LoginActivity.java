@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.devs.tutorsapp.MainActivity;
 import com.devs.tutorsapp.R;
 import com.devs.tutorsapp.ui.viewmodel.AuthViewModel;
+import com.devs.tutorsapp.utils.SharedPrefManager;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -42,16 +43,18 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        authViewModel.getSuccessMessage().observe(this, message -> {
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        authViewModel.getErrorMessage().observe(this, error -> {
+            Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
+        });
+
+        authViewModel.getAlumno().observe(this, alumno -> {
+            Toast.makeText(this, "Login exitoso", Toast.LENGTH_SHORT).show();
+
+            SharedPrefManager.getInstance(this).saveLogin(alumno.getAlumno_id(), alumno.getNombre(), alumno.getEmail());
 
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
-        });
-
-        authViewModel.getErrorMessage().observe(this, error -> {
-            Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
         });
     }
 
