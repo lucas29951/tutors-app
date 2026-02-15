@@ -2,19 +2,23 @@ package com.devs.tutorsapp.ui.tutor;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.devs.tutorsapp.R;
+import com.devs.tutorsapp.data.model.Tutor;
+import com.devs.tutorsapp.ui.tutor.adapter.TutorAdapter;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link TutorFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.List;
+
 public class TutorFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
@@ -25,6 +29,10 @@ public class TutorFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private RecyclerView recyclerView;
+    private TutorAdapter adapter;
+    private List<Tutor> tutorList;
 
     public TutorFragment() {
         // Required empty public constructor
@@ -57,10 +65,46 @@ public class TutorFragment extends Fragment {
         }
     }
 
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tutor, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_tutor, container, false);
+
+        recyclerView = view.findViewById(R.id.recyclerTutores);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        cargarDatos();
+
+        adapter = new TutorAdapter(tutorList);
+        recyclerView.setAdapter(adapter);
+
+        return view;
+    }
+
+    private void cargarDatos() {
+        tutorList = new ArrayList<>();
+
+        tutorList.add(new Tutor(
+                "Juan",
+                "Pérez",
+                "$160.00/h",
+                "Profesor con 5 años de experiencia en nivel secundario."
+        ));
+
+        tutorList.add(new Tutor(
+                "María",
+                "Gómez",
+                "$250.00/h",
+                "Desarrolladora y docente universitaria."
+        ));
+
+        tutorList.add(new Tutor(
+                "Carlos",
+                "López",
+                "$85.00/h",
+                "Clases personalizadas para todos los niveles."
+        ));
     }
 }
