@@ -19,7 +19,11 @@
     <string name="ph_confirm_password">Confirm Password</string>
     <string name="btn_create_account">Create Account</string>
     <string name="lbl_signin">Already have an account? Log in</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="search_title">Search Tutors</string>
+    <string name="ph_search">Search for subjects</string>
+    <string name="price_filter">Price</string>
+    <string name="availability_filter">Availability</string>
+    <string name="online_status">Online</string>
 
 </resources>
