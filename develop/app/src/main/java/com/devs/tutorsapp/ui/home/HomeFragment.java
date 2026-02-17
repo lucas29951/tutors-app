@@ -2,13 +2,18 @@ package com.devs.tutorsapp.ui.home;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.devs.tutorsapp.R;
+import com.devs.tutorsapp.ui.viewmodel.SessionViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +30,9 @@ public class HomeFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private SessionViewModel sessionViewModel;
+    private TextView tvNameSaludo;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -62,5 +70,18 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        tvNameSaludo = view.findViewById(R.id.tvNameSaludo);
+
+        sessionViewModel = new ViewModelProvider(requireActivity()).get(SessionViewModel.class);
+
+        sessionViewModel.getAlumnoNombre().observe(getViewLifecycleOwner(), name -> {
+            tvNameSaludo.setText("Hola, " + name);
+        });
     }
 }
