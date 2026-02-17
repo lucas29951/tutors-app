@@ -27,13 +27,6 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        sharedPrefManager = SharedPrefManager.getInstance(this);
-
-        if (!sharedPrefManager.isLoggedIn()) {
-            finish();
-            return;
-        }
-
         setContentView(R.layout.activity_home);
 
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
