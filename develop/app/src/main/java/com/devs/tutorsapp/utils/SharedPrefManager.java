@@ -10,6 +10,7 @@ public class SharedPrefManager {
     private static final String KEY_ALUMNO_ID = "alumnoId";
     private static final String KEY_ALUMNO_NOMBRE = "alumnoNombre";
     private static final String KEY_ALUMNO_EMAIL = "alumnoEmail";
+    private static final String KEY_FIRST_TIME = "firstTime";
 
     private static SharedPrefManager instance;
     private final SharedPreferences prefs;
@@ -60,6 +61,14 @@ public class SharedPrefManager {
     }
 
     public void logout() {
-        prefs.edit().clear().apply();
+        prefs.edit().clear().putBoolean(KEY_FIRST_TIME, false).apply();
+    }
+
+    public boolean isFirstTime() {
+        return prefs.getBoolean(KEY_FIRST_TIME, true);
+    }
+
+    public void setFirstTimeFalse() {
+        prefs.edit().putBoolean(KEY_FIRST_TIME, false).apply();
     }
 }
