@@ -8,6 +8,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
@@ -16,6 +17,7 @@ import com.devs.tutorsapp.R;
 import com.devs.tutorsapp.ui.clase.ClaseFragment;
 import com.devs.tutorsapp.ui.perfil.PerfilFragment;
 import com.devs.tutorsapp.ui.tutor.TutorFragment;
+import com.devs.tutorsapp.ui.viewmodel.SessionViewModel;
 import com.devs.tutorsapp.utils.SharedPrefManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -28,6 +30,14 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_home);
+
+        SessionViewModel sessionViewModel = new ViewModelProvider(this).get(SessionViewModel.class);
+
+        int alumnoId = getIntent().getIntExtra("idAlumno", -1);
+        String alumnoNombre = getIntent().getStringExtra("nombreAlumno");
+        String alumnoEmail = getIntent().getStringExtra("emailAlumno");
+
+        sessionViewModel.setAlumno(alumnoId, alumnoNombre, alumnoEmail);
 
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
 
