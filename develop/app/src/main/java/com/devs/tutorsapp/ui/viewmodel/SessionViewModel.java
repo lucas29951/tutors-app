@@ -27,4 +27,10 @@ public class SessionViewModel extends ViewModel {
     public LiveData<String> getAlumnoEmail() {
         return alumnoEmail;
     }
+
+    public void clearSession() {
+        alumnoId.setValue(null);
+        alumnoNombre.setValue(null);
+        alumnoEmail.setValue(null);
+    }
 }
