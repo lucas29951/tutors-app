@@ -6,14 +6,17 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.devs.tutorsapp.R;
 import com.devs.tutorsapp.ui.auth.LoginActivity;
+import com.devs.tutorsapp.ui.viewmodel.SessionViewModel;
 import com.devs.tutorsapp.utils.SharedPrefManager;
 
 /**
@@ -31,7 +34,9 @@ public class PerfilFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    Button btnLogout;
+    private SessionViewModel sessionViewModel;
+    private TextView tvProfileName;
+    private Button btnLogout;
 
     public PerfilFragment() {
         // Required empty public constructor
@@ -74,7 +79,14 @@ public class PerfilFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        tvProfileName = view.findViewById(R.id.tvProfileName);
         btnLogout = view.findViewById(R.id.btnLogout);
+
+        sessionViewModel = new ViewModelProvider(requireActivity()).get(SessionViewModel.class);
+
+        sessionViewModel.getAlumnoNombre().observe(getViewLifecycleOwner(), name -> {
+            tvProfileName.setText("Soy " + name + " ,y este es mi perfil!");
+        });
 
         btnLogout.setOnClickListener(v -> {
             SharedPrefManager.getInstance(requireContext()).logout();
