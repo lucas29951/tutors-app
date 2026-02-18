@@ -85,11 +85,13 @@ public class PerfilFragment extends Fragment {
         sessionViewModel = new ViewModelProvider(requireActivity()).get(SessionViewModel.class);
 
         sessionViewModel.getAlumnoNombre().observe(getViewLifecycleOwner(), name -> {
-            tvProfileName.setText("Soy " + name + " ,y este es mi perfil!");
+            tvProfileName.setText("Soy " + name + ", y este es mi perfil!");
         });
 
         btnLogout.setOnClickListener(v -> {
             SharedPrefManager.getInstance(requireContext()).logout();
+
+            sessionViewModel.clearSession();
 
             Intent intent = new Intent(requireActivity(), LoginActivity.class);
 
