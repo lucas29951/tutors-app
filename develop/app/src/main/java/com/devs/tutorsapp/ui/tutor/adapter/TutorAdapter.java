@@ -9,15 +9,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.devs.tutorsapp.R;
-import com.devs.tutorsapp.data.model.Tutor;
+import com.devs.tutorsapp.data.local.entity.TutorEntity;
 
 import java.util.List;
 
 public class TutorAdapter extends RecyclerView.Adapter<TutorAdapter.TutorViewHolder> {
 
-    private List<Tutor> tutorList;
+    private List<TutorEntity> tutorList;
 
-    public TutorAdapter(List<Tutor> tutorList) {
+    public TutorAdapter(List<TutorEntity> tutorList) {
         this.tutorList = tutorList;
     }
 
@@ -30,16 +30,23 @@ public class TutorAdapter extends RecyclerView.Adapter<TutorAdapter.TutorViewHol
 
     @Override
     public void onBindViewHolder(@NonNull TutorAdapter.TutorViewHolder holder, int position) {
-        Tutor tutor = tutorList.get(position);
+        TutorEntity tutor = tutorList.get(position);
 
         holder.nombre.setText(tutor.getNombre() + " " + tutor.getApellido());
         holder.descripcion.setText(tutor.getDescripcion());
-        holder.precio.setText(tutor.getPrecio());
+        holder.precio.setText("$ " + tutor.getPrecio() + "/h");
     }
 
     @Override
     public int getItemCount() {
-        return tutorList.size();
+        return tutorList != null ? tutorList.size() : 0;
+    }
+
+    public void setTutorList(List<TutorEntity> tutorList) {
+        if (tutorList != null) {
+            this.tutorList = tutorList;
+            notifyDataSetChanged();
+        }
     }
 
     public static class TutorViewHolder extends RecyclerView.ViewHolder {
