@@ -18,10 +18,12 @@ public class TutorViewModel extends AndroidViewModel {
 
     private final TutorRepository repository;
     private final MutableLiveData<List<TutorEntity>> listaTutores = new MutableLiveData<>();
+    private final LiveData<List<TutorEntity>> allTutores;
 
     public TutorViewModel(@NonNull Application application) {
         super(application);
         repository = new TutorRepository(application);
+        allTutores = repository.getAllTutores();
     }
 
     public LiveData<List<TutorEntity>> getListaTutores() {
@@ -42,4 +44,7 @@ public class TutorViewModel extends AndroidViewModel {
         });
     }
 
+    public LiveData<List<TutorEntity>> getAllTutores() {
+        return allTutores;
+    }
 }
