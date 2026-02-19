@@ -1,9 +1,13 @@
 package com.devs.tutorsapp.data.local.entity;
 
 import androidx.room.Entity;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "alumnos")
+@Entity(
+        tableName = "alumnos",
+        indices = {@Index(value = {"email"}, unique = true)}
+)
 public class AlumnoEntity {
 
     @PrimaryKey(autoGenerate = true)
