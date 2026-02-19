@@ -14,9 +14,11 @@ public class TeachMeApplication extends Application {
         instance = this;
         android.util.Log.d("devtest", "Application iniciada");
 
-        database = AppDatabase.getInstance(this);
-        database.materiaDao().getAllMaterias();
-        android.util.Log.d("devtest", "Base de datos inicializada");
+        AppDatabase.databaseWriteExecutor.execute(() -> {
+            database = AppDatabase.getInstance(this);
+            database.alumnoDao().getAlumnoByEmail("");
+            android.util.Log.d("devtest", "Base de datos inicializada");
+        });
     }
 
     public static TeachMeApplication getInstance() {
