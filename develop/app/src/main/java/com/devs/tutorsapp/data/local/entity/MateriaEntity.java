@@ -10,11 +10,9 @@ public class MateriaEntity {
     private int materia_id;
 
     private String nombre;
-    private String descripcion;
 
-    public MateriaEntity(String nombre, String descripcion) {
+    public MateriaEntity(String nombre) {
         this.nombre = nombre;
-        this.descripcion = descripcion;
     }
 
     public int getMateria_id() {
@@ -33,11 +31,4 @@ public class MateriaEntity {
         this.nombre = nombre;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
 }
