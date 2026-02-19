@@ -16,8 +16,10 @@ public class TutorEntity {
     private String direccion;
     private String foto;
     private String descripcion;
+    private double precio;
+    private double rating;
 
-    public TutorEntity(String nombre, String apellido, String email, String telefono, String descripcion, String foto, String direccion) {
+    public TutorEntity(String nombre, String apellido, String email, String telefono, String descripcion, String foto, String direccion, double precio, double rating) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
@@ -25,6 +27,8 @@ public class TutorEntity {
         this.direccion = direccion;
         this.descripcion = descripcion;
         this.foto = foto;
+        this.precio = precio;
+        this.rating = rating;
     }
 
     public int getTutor_id() {
@@ -89,5 +93,21 @@ public class TutorEntity {
 
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
     }
 }
