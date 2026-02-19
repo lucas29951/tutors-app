@@ -2,6 +2,8 @@ package com.devs.tutorsapp.data.repository;
 
 import android.content.Context;
 
+import androidx.lifecycle.LiveData;
+
 import com.devs.tutorsapp.data.local.dao.TutorDao;
 import com.devs.tutorsapp.data.local.database.AppDatabase;
 import com.devs.tutorsapp.data.local.entity.TutorEntity;
@@ -30,5 +32,9 @@ public class TutorRepository {
             List<TutorEntity> lista = (tutorDao.getAllTutores()).getValue();
             callback.onSuccess(lista);
         });
+    }
+
+    public LiveData<List<TutorEntity>> getAllTutores() {
+        return tutorDao.getAllTutores();
     }
 }
