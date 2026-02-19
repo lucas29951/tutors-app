@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import com.devs.tutorsapp.R;
 import com.devs.tutorsapp.data.model.Tutor;
 import com.devs.tutorsapp.ui.tutor.adapter.TutorAdapter;
+import com.devs.tutorsapp.ui.viewmodel.TutorViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +35,7 @@ public class TutorFragment extends Fragment {
     private RecyclerView recyclerView;
     private TutorAdapter adapter;
     private List<Tutor> tutorList;
+    private TutorViewModel tutorViewModel;
 
     public TutorFragment() {
         // Required empty public constructor
@@ -75,36 +78,18 @@ public class TutorFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerTutores);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        cargarDatos();
-
-        adapter = new TutorAdapter(tutorList);
+        adapter = new TutorAdapter(new ArrayList<>());
         recyclerView.setAdapter(adapter);
+
+        tutorViewModel = new ViewModelProvider(this).get(TutorViewModel.class);
+
+        tutorViewModel.getAllTutores().observe(getViewLifecycleOwner(), tutores -> {
+            if (tutores != null) {
+                adapter.setTutorList(tutores);
+            }
+        });
 
         return view;
     }
 
-    private void cargarDatos() {
-        tutorList = new ArrayList<>();
-
-        tutorList.add(new Tutor(
-                "Juan",
-                "Pérez",
-                "$160.00/h",
-                "Profesor con 5 años de experiencia en nivel secundario."
-        ));
-
-        tutorList.add(new Tutor(
-                "María",
-                "Gómez",
-                "$250.00/h",
-                "Desarrolladora y docente universitaria."
-        ));
-
-        tutorList.add(new Tutor(
-                "Carlos",
-                "López",
-                "$85.00/h",
-                "Clases personalizadas para todos los niveles."
-        ));
-    }
 }
