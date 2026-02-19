@@ -79,21 +79,42 @@ public abstract class AppDatabase extends RoomDatabase {
     };
 
     private static void prepopulate(AppDatabase database) {
+        android.util.Log.d("devtest", "Ejecutando precarga de datos..");
 
-        MateriaEntity matematica = new MateriaEntity("Matematica", "Clases de Algebra y Analisis Matematico");
-        MateriaEntity programacion = new MateriaEntity("Programacion", "Java y Desarrollo Android");
+        MateriaDao materiaDao = database.materiaDao();
+        TutorDao tutorDao = database.tutorDao();
+        AlumnoDao alumnoDao = database.alumnoDao();
 
-        database.materiaDao().insertMateria(matematica);
-        database.materiaDao().insertMateria(programacion);
+        android.util.Log.d("devtest", "Cargando materias...");
 
-        TutorEntity tutor1 = new TutorEntity("Carlos", "Gomez", "carlos@gmail.com", "123456789", "Profesor de matematica con 10 años de experiencia.", "", "Buenos Aires 123");
-        TutorEntity tutor2 = new TutorEntity("Laura", "Martinez", "laura@gmail.com", "987654321", "Desarrolladora Android y profesora universitaria.", "", "Cordoba 456");
+        materiaDao.insertMateria(new MateriaEntity("Matemática"));
+        materiaDao.insertMateria(new MateriaEntity("Física"));
+        materiaDao.insertMateria(new MateriaEntity("Química"));
+        materiaDao.insertMateria(new MateriaEntity("Biología"));
+        materiaDao.insertMateria(new MateriaEntity("Historia"));
+        materiaDao.insertMateria(new MateriaEntity("Geografía"));
+        materiaDao.insertMateria(new MateriaEntity("Inglés"));
+        materiaDao.insertMateria(new MateriaEntity("Programación"));
+        materiaDao.insertMateria(new MateriaEntity("Álgebra"));
+        materiaDao.insertMateria(new MateriaEntity("Estadística"));
 
-        long tutor1Id = database.tutorDao().insertTutor(tutor1);
-        long tutor2Id = database.tutorDao().insertTutor(tutor2);
+        android.util.Log.d("devtest", "Cargando Tutores...");
 
-        database.tutorMateriaDao().insertTutorMateria(new TutorMateriaEntity((int) tutor1Id, 1));
-        database.tutorMateriaDao().insertTutorMateria(new TutorMateriaEntity((int) tutor2Id, 2));
+        tutorDao.insertTutor(new TutorEntity("Carlos", "Pérez", "carlos.perez@gmail.com", "1234567890", "", "", "", 19, 5));
+        tutorDao.insertTutor(new TutorEntity("Laura", "Gómez", "laura.gomez@gmail.com", "9876543210", "", "", "", 21, 3));
+        tutorDao.insertTutor(new TutorEntity("María", "Díaz", "maria.diaz@gmail.com", "5555555555", "", "", "", 60, 7));
+        tutorDao.insertTutor(new TutorEntity("Javier", "López", "javier.lopez@gmail.com", "9999999999", "", "", "", 32, 8));
+        tutorDao.insertTutor(new TutorEntity("Ana", "Martínez", "ana.martinez@gmail.com", "7777777777", "", "", "", 42, 7));
+        tutorDao.insertTutor(new TutorEntity("Pedro", "Sánchez", "pedro.sanchez@gmail.com", "4444444444", "", "", "", 25, 6));
+        tutorDao.insertTutor(new TutorEntity("Lucía", "Fernández", "lucia.fernandez@gmail.com", "2222222222", "", "", "", 21, 7));
+        tutorDao.insertTutor(new TutorEntity("Diego", "Ramírez", "diego.ramirez@gmail.com", "8888888888", "", "", "", 34, 7));
+        tutorDao.insertTutor(new TutorEntity("Sofía", "Torres", "sofia.torres@gmail.com", "6666666666", "", "", "", 27, 6));
+        tutorDao.insertTutor(new TutorEntity("Martín", "Castro", "martin.castro@gmail.com", "3333333333", "", "", "", 30, 8));
+        tutorDao.insertTutor(new TutorEntity("Valentina", "Ruiz", "valentina.ruiz@gmail.com", "1111111111", "", "", "", 13, 7));
+        tutorDao.insertTutor(new TutorEntity("Andrés", "Morales", "andres.morales@gmail.com", "0000000000", "", "", "", 15, 6));
+        tutorDao.insertTutor(new TutorEntity("Camila", "Herrera", "camila.herrera@gmail.com", "9453299999", "", "", "", 23, 5));
+        tutorDao.insertTutor(new TutorEntity("Nicolás", "Vega", "nicolas.vega@gmail.com", "3257294389", "", "", "", 36, 7));
+        tutorDao.insertTutor(new TutorEntity("Paula", "Rojas", "paula.rojas@gmail.com", "8539605098", "", "", "", 12, 6));
 
     }
 
