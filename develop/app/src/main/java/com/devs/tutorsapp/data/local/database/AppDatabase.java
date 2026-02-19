@@ -23,6 +23,7 @@ import com.devs.tutorsapp.data.local.entity.ResenaEntity;
 import com.devs.tutorsapp.data.local.entity.TutorEntity;
 import com.devs.tutorsapp.data.local.entity.TutorMateriaEntity;
 
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @Database(
@@ -41,6 +42,9 @@ import java.util.concurrent.Executors;
 public abstract class AppDatabase extends RoomDatabase {
 
     private static volatile AppDatabase INSTANCE;
+    private static final int NUMBER_OF_THREADS = 4;
+    public static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
+
 
     public abstract AlumnoDao alumnoDao();
     public abstract TutorDao tutorDao();
@@ -58,32 +62,31 @@ public abstract class AppDatabase extends RoomDatabase {
                     "teachme_database"
             )
                     .fallbackToDestructiveMigration()
-                    .addCallback(roomCallback)
+                    .addCallback(roomCallback(context))
                     .build();
             android.util.Log.d("devtest", "Base de datos creada");
         }
         return INSTANCE;
     }
 
-    private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback() {
-        @Override
-        public void onCreate(@NonNull SupportSQLiteDatabase db) {
-            super.onCreate(db);
-
-            Executors.newSingleThreadExecutor().execute(() -> {
-                AppDatabase database = INSTANCE;
-
-                prepopulate(database);
-            });
-        }
-    };
+    private static RoomDatabase.Callback roomCallback(Context context) {
+        return new RoomDatabase.Callback() {
+            @Override
+            public void onCreate(@NonNull SupportSQLiteDatabase db) {
+                super.onCreate(db);
+                databaseWriteExecutor.execute(() -> {
+                    AppDatabase database = getInstance(context);
+                    prepopulate(database);
+                });
+            }
+        };
+    }
 
     private static void prepopulate(AppDatabase database) {
         android.util.Log.d("devtest", "Ejecutando precarga de datos..");
 
         MateriaDao materiaDao = database.materiaDao();
         TutorDao tutorDao = database.tutorDao();
-        AlumnoDao alumnoDao = database.alumnoDao();
 
         android.util.Log.d("devtest", "Cargando materias...");
 
