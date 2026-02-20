@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +36,7 @@ public class PerfilFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private SessionViewModel sessionViewModel;
-    private TextView tvProfileName;
+    private TextView tvProfileName, tvProfileEmail;
     private Button btnLogout;
 
     public PerfilFragment() {
@@ -80,13 +81,17 @@ public class PerfilFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         tvProfileName = view.findViewById(R.id.tvProfileName);
+        tvProfileEmail = view.findViewById(R.id.tvProfileEmail);
         btnLogout = view.findViewById(R.id.btnLogout);
 
         sessionViewModel = new ViewModelProvider(requireActivity()).get(SessionViewModel.class);
 
-        sessionViewModel.getAlumnoNombre().observe(getViewLifecycleOwner(), name -> {
-            tvProfileName.setText("Soy " + name + ", y este es mi perfil!");
-        });
+        String nombre = getActivity().getIntent().getStringExtra("nombreAlumno");
+        String apellido = getActivity().getIntent().getStringExtra("apellidoAlumno");
+        String email = getActivity().getIntent().getStringExtra("emailAlumno");
+
+        tvProfileName.setText(nombre + " " + apellido);
+        tvProfileEmail.setText(email);
 
         btnLogout.setOnClickListener(v -> {
             SharedPrefManager.getInstance(requireContext()).logout();
