@@ -2,6 +2,7 @@ package com.devs.tutorsapp.ui.auth;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -67,7 +68,8 @@ public class LoginActivity extends AppCompatActivity {
 
             Intent intent = new Intent(this, HomeActivity.class);
             intent.putExtra("idAlumno", alumno.getAlumno_id());
-            intent.putExtra("nombreAlumno", alumno.getNombre() + " " + alumno.getApellido());
+            intent.putExtra("nombreAlumno", alumno.getNombre());
+            intent.putExtra("apellidoAlumno", alumno.getApellido());
             intent.putExtra("emailAlumno", alumno.getEmail());
             startActivity(intent);
             finish();
