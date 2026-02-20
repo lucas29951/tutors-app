@@ -39,16 +39,18 @@ public class RegistroActivity extends AppCompatActivity {
 
         btnRegistrar.setOnClickListener(v -> registrar());
 
-        authViewModel.getSuccessMessage().observe(this, message -> {
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-            finish();
-        });
-
         authViewModel.getErrorMessage().observe(this, error -> {
             Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
         });
 
         tvLogin.setOnClickListener(v -> {
+            Intent intent = new Intent(RegistroActivity.this, LoginActivity.class);
+            startActivity(intent);
+        });
+
+        authViewModel.getAlumno().observe(this, alumno -> {
+            Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show();
+
             Intent intent = new Intent(RegistroActivity.this, LoginActivity.class);
             startActivity(intent);
         });
