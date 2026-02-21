@@ -24,4 +24,15 @@
         android:name="com.devs.tutorsapp.ui.perfil.PerfilFragment"
         android:label="Perfil"/>
 
+    <fragment
+        android:id="@+id/tutorProfileFragment"
+        android:name="com.devs.tutorsapp.ui.tutor.TutorProfileFragment"
+        android:label="Perfil Tutor">
+
+        <argument
+            android:name="tutorId"
+            app:argType="integer"/>
+
+    </fragment>
+
 </navigation>
