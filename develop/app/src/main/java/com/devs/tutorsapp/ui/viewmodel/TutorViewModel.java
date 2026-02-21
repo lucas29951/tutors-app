@@ -47,4 +47,8 @@ public class TutorViewModel extends AndroidViewModel {
     public LiveData<List<TutorEntity>> getAllTutores() {
         return allTutores;
     }
+
+    public LiveData<TutorEntity> getTutorById(int id) {
+        return repository.getTutorById(id);
+    }
 }
