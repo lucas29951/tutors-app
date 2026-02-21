@@ -28,4 +28,7 @@ public interface TutorDao {
     @Query("SELECT * FROM tutores WHERE tutor_id = :tutor_id")
     TutorEntity getById(int tutor_id);
 
+    @Query("SELECT * FROM tutores WHERE tutor_id = :tutor_id")
+    LiveData<TutorEntity> getTutorById(int tutor_id);
+
 }
