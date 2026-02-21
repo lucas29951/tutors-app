@@ -37,4 +37,9 @@ public class TutorRepository {
     public LiveData<List<TutorEntity>> getAllTutores() {
         return tutorDao.getAllTutores();
     }
+
+    public LiveData<TutorEntity> getTutorById(int id) {
+        return tutorDao.getTutorById(id);
+    }
+
 }
