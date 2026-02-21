@@ -16,9 +16,11 @@ import java.util.List;
 public class TutorAdapter extends RecyclerView.Adapter<TutorAdapter.TutorViewHolder> {
 
     private List<TutorEntity> tutorList;
+    private OnTutorClickListener listener;
 
-    public TutorAdapter(List<TutorEntity> tutorList) {
+    public TutorAdapter(List<TutorEntity> tutorList, OnTutorClickListener listener) {
         this.tutorList = tutorList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -35,6 +37,12 @@ public class TutorAdapter extends RecyclerView.Adapter<TutorAdapter.TutorViewHol
         holder.nombre.setText(tutor.getNombre() + " " + tutor.getApellido());
         holder.descripcion.setText(tutor.getDescripcion());
         holder.precio.setText("$ " + tutor.getPrecio() + "/h");
+
+        holder.itemView.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onTutorClick(tutor);
+            }
+        });
     }
 
     @Override
@@ -60,6 +68,10 @@ public class TutorAdapter extends RecyclerView.Adapter<TutorAdapter.TutorViewHol
             descripcion = itemView.findViewById(R.id.textDescripcion);
             precio = itemView.findViewById(R.id.textPrecio);
         }
+    }
+
+    public interface OnTutorClickListener {
+        void onTutorClick(TutorEntity tutor);
     }
 
 }
