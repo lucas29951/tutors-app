@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -78,7 +80,17 @@ public class TutorFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerTutores);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        adapter = new TutorAdapter(new ArrayList<>());
+        adapter = new TutorAdapter(new ArrayList<>(), tutor -> {
+            Bundle bundle = new Bundle();
+            bundle.putInt("tutorId", tutor.getTutor_id());
+
+            TutorProfileFragment tutorProfileFragment = new TutorProfileFragment();
+            tutorProfileFragment.setArguments(bundle);
+
+            NavController navController = NavHostFragment.findNavController(TutorFragment.this);
+
+            navController.navigate(R.id.tutorProfileFragment, bundle);
+        });
         recyclerView.setAdapter(adapter);
 
         tutorViewModel = new ViewModelProvider(this).get(TutorViewModel.class);
