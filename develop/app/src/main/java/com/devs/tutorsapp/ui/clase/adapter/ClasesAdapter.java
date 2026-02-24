@@ -10,16 +10,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.devs.tutorsapp.R;
+import com.devs.tutorsapp.data.local.entity.ClaseEntity;
 import com.devs.tutorsapp.data.model.Clase;
 
 import java.util.List;
 
 public class ClasesAdapter extends RecyclerView.Adapter<ClasesAdapter.ViewHolder> {
 
-    private List<Clase> list;
+    private List<ClaseEntity> list;
 
-    public ClasesAdapter(List<Clase> list) {
+    public ClasesAdapter(List<ClaseEntity> list) {
         this.list = list;
+    }
+
+    public ClasesAdapter() {
+        this.list = null;
     }
 
     @NonNull
@@ -32,15 +37,15 @@ public class ClasesAdapter extends RecyclerView.Adapter<ClasesAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Clase item = list.get(position);
+        ClaseEntity item = list.get(position);
 
-        holder.name.setText(item.getName());
-        holder.date.setText(item.getDate());
+        holder.name.setText("ID de Tutor: " + item.getTutor_id());
+        holder.date.setText(item.getFecha() + " " + item.getHora_inicio());
 
-        if (item.getStatus().equals("pending")) {
+        if (item.getEstado().equals("Pending")) {
             //punto naranja
             holder.statusDot.setBackgroundColor(Color.parseColor("#FF5722"));
-        } else if(item.getStatus().equals("confirmed")) {
+        } else if(item.getEstado().equals("Confirmed")) {
             //punto verde
             holder.statusDot.setBackgroundColor(Color.parseColor("#0AD02D"));
         } else {
@@ -52,6 +57,11 @@ public class ClasesAdapter extends RecyclerView.Adapter<ClasesAdapter.ViewHolder
     @Override
     public int getItemCount() {
         return list.size();
+    }
+
+    public void setData(List<ClaseEntity> list) {
+        this.list = list;
+        notifyDataSetChanged();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
