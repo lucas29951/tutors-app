@@ -46,4 +46,12 @@ public class ClaseViewModel extends AndroidViewModel {
         repository.crearClase(clase);
     }
 
+    public LiveData<List<ClaseEntity>> getClasesByEstado(String status) {
+        return repository.getClasesByEstado(status);
+    }
+
+    public LiveData<List<ClaseEntity>> getClasesByEstadoAndAlumnoId(String status, int alumnoId) {
+        return repository.getClasesByEstadoAndAlumnoId(status, alumnoId);
+    }
+
 }
