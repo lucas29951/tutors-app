@@ -3,16 +3,22 @@ package com.devs.tutorsapp.ui.clase;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.devs.tutorsapp.R;
+import com.devs.tutorsapp.data.local.entity.ClaseEntity;
 import com.devs.tutorsapp.data.model.Clase;
 import com.devs.tutorsapp.ui.clase.adapter.ClasesAdapter;
+import com.devs.tutorsapp.ui.viewmodel.ClaseViewModel;
+import com.devs.tutorsapp.ui.viewmodel.SessionViewModel;
+import com.devs.tutorsapp.utils.SharedPrefManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +36,9 @@ public class ClasesListFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private static final String ARG_STATUS = "status";
     private String status;
+    private ClaseViewModel viewModel;
+    private ClasesAdapter adapter;
+    private int idAlumno;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -58,8 +67,7 @@ public class ClasesListFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            status = getArguments().getString(ARG_STATUS);
         }
     }
 
@@ -69,15 +77,45 @@ public class ClasesListFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_clases_list, container, false);
 
-        if (getArguments() != null) {
-            status = getArguments().getString(ARG_STATUS);
-        }
-
         RecyclerView recyclerView = view.findViewById(R.id.recyclerClases);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        ClasesAdapter adapter = new ClasesAdapter(getMockData(status));
+        adapter = new ClasesAdapter(new ArrayList<>());
         recyclerView.setAdapter(adapter);
+
+        if (getArguments() != null) {
+            status = getArguments().getString(ARG_STATUS);
+        } else {
+            status = "pending";
+        }
+
+        viewModel = new ViewModelProvider(this).get(ClaseViewModel.class);
+
+//        viewModel.getClasesByEstado(status).observe(getViewLifecycleOwner(), clases -> {
+//            adapter.setData(clases);
+//        });
+
+        SessionViewModel session = new ViewModelProvider(requireActivity()).get(SessionViewModel.class);
+
+        session.getAlumnoId().observe(getViewLifecycleOwner(), id -> {
+            if (id == null || id <= 0) {
+                Log.d("devtest", "ID Invalido: " + id);
+                return;
+            }
+
+            Log.d("devtest", "ID de Alumno: " + id);
+            Log.d("devtest", "Estado enviado: " + status);
+
+            viewModel.getClasesByEstadoAndAlumnoId(status, id).observe(getViewLifecycleOwner(), clases -> {
+                Log.d("devtest", "Clases encontradas: " + clases.size());
+
+                for (ClaseEntity c : clases) {
+                    Log.d("devtest", "Clase: " + c.getEstado() + " ID Alumno: " + c.getAlumno_id());
+                }
+
+                adapter.setData(clases);
+            });
+        });
 
         return view;
     }
