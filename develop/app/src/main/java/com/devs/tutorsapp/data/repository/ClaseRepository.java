@@ -4,6 +4,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ExecutorService;
 import java.util.List;
 import android.content.Context;
+import android.util.Log;
+
+import androidx.lifecycle.LiveData;
 
 import com.devs.tutorsapp.data.local.dao.ClaseDao;
 import com.devs.tutorsapp.data.local.database.AppDatabase;
@@ -36,5 +39,13 @@ public class ClaseRepository {
             List<ClaseEntity> lista = (claseDao.getClasesByTutorId(tutorId)).getValue();
             callback.onSuccess(lista);
         });
+    }
+
+    public LiveData<List<ClaseEntity>> getClasesByEstado(String status) {
+        return claseDao.getClasesByEstado(status);
+    }
+
+    public LiveData<List<ClaseEntity>> getClasesByEstadoAndAlumnoId(String status, int alumnoId) {
+        return claseDao.getClasesByEstadoAndAlumnoId(status, alumnoId);
     }
 }
