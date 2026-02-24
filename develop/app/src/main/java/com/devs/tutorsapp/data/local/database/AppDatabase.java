@@ -87,6 +87,8 @@ public abstract class AppDatabase extends RoomDatabase {
 
         MateriaDao materiaDao = database.materiaDao();
         TutorDao tutorDao = database.tutorDao();
+        AlumnoDao alumnoDao = database.alumnoDao();
+        ClaseDao claseDao = database.claseDao();
 
         android.util.Log.d("devtest", "Cargando materias...");
 
@@ -119,6 +121,25 @@ public abstract class AppDatabase extends RoomDatabase {
         tutorDao.insertTutor(new TutorEntity("Nicolás", "Vega", "nicolas.vega@gmail.com", "3257294389", "", "", "", 36, 7));
         tutorDao.insertTutor(new TutorEntity("Paula", "Rojas", "paula.rojas@gmail.com", "8539605098", "", "", "", 12, 6));
 
+        android.util.Log.d("devtest", "Cargando Alumnos...");
+
+        alumnoDao.insertAlumno(new AlumnoEntity("Lucia", "Robles", "luciar@gmail.com", "lucia123", "", "", ""));
+        alumnoDao.insertAlumno(new AlumnoEntity("Sofía", "López", "sofial@mail.com", "sofia123", "", "", ""));
+        alumnoDao.insertAlumno(new AlumnoEntity("Martín", "Díaz", "martind@mail.com", "martin123", "", "", ""));
+        alumnoDao.insertAlumno(new AlumnoEntity("Camila", "Torres", "camilat@mail.com", "cami123", "", "", ""));
+        alumnoDao.insertAlumno(new AlumnoEntity("Pedro", "Gómez", "pedrog@mail.com", "pedro123", "", "", ""));
+
+        android.util.Log.d("devtest", "Cargando clases...");
+
+        claseDao.insertClase(new ClaseEntity(1, 1, 3, "2024-06-15", "19:15", 1, "Pending"));
+        claseDao.insertClase(new ClaseEntity(1, 2, 6, "2024-06-16", "09:30", 2, "Confirmed"));
+        claseDao.insertClase(new ClaseEntity(1, 3, 7, "2024-06-17", "12:45", 1, "Completed"));
+
+        claseDao.insertClase(new ClaseEntity(2, 1, 3, "2024-06-18", "13:00", 3, "Pending"));
+        claseDao.insertClase(new ClaseEntity(2, 2, 8, "2024-06-19", "17:30", 1, "Confirmed"));
+
+        claseDao.insertClase(new ClaseEntity(3, 3, 9, "2024-06-20", "20:00", 3, "Completed"));
+        claseDao.insertClase(new ClaseEntity(3, 1, 4, "2024-06-21", "11:40", 2, "Pending"));
     }
 
 }
