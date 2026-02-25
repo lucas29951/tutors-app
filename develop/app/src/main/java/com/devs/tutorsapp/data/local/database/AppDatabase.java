@@ -89,6 +89,8 @@ public abstract class AppDatabase extends RoomDatabase {
         TutorDao tutorDao = database.tutorDao();
         AlumnoDao alumnoDao = database.alumnoDao();
         ClaseDao claseDao = database.claseDao();
+        DisponibilidadDao disponibilidadDao = database.disponibilidadDao();
+        TutorMateriaDao tutorMateriaDao = database.tutorMateriaDao();
 
         android.util.Log.d("devtest", "Cargando materias...");
 
@@ -140,6 +142,26 @@ public abstract class AppDatabase extends RoomDatabase {
 
         claseDao.insertClase(new ClaseEntity(3, 3, 9, "2024-06-20", "20:00", 3, "Completed"));
         claseDao.insertClase(new ClaseEntity(3, 1, 4, "2024-06-21", "11:40", 2, "Pending"));
+
+        android.util.Log.d("devtest", "Cargando disponibilidades...");
+
+        disponibilidadDao.insertDisponibilidad(new DisponibilidadEntity(2, "Lunes", "17:45", "19:00"));
+        disponibilidadDao.insertDisponibilidad(new DisponibilidadEntity(6, "Jueves", "08:15", "12:30"));
+        disponibilidadDao.insertDisponibilidad(new DisponibilidadEntity(3, "Miercoles", "13:00", "15:45"));
+        disponibilidadDao.insertDisponibilidad(new DisponibilidadEntity(10, "Martes", "19:20", "21:15"));
+        disponibilidadDao.insertDisponibilidad(new DisponibilidadEntity(7, "Jueves", "10:40", "13:35"));
+        disponibilidadDao.insertDisponibilidad(new DisponibilidadEntity(1, "Viernes", "11:30", "14:50"));
+        disponibilidadDao.insertDisponibilidad(new DisponibilidadEntity(12, "Martes", "08:50", "10:30"));
+
+        android.util.Log.d("devtest", "Cargando tutor-materias...");
+
+        tutorMateriaDao.insertTutorMateria(new TutorMateriaEntity(2, 3));
+        tutorMateriaDao.insertTutorMateria(new TutorMateriaEntity(6, 1));
+        tutorMateriaDao.insertTutorMateria(new TutorMateriaEntity(3, 7));
+        tutorMateriaDao.insertTutorMateria(new TutorMateriaEntity(10, 4));
+        tutorMateriaDao.insertTutorMateria(new TutorMateriaEntity(7, 9));
+        tutorMateriaDao.insertTutorMateria(new TutorMateriaEntity(1, 5));
+        tutorMateriaDao.insertTutorMateria(new TutorMateriaEntity(12, 8));
     }
 
 }
