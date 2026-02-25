@@ -4,15 +4,18 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.devs.tutorsapp.R;
+import com.devs.tutorsapp.ui.clase.ReservaClaseFragment;
 import com.devs.tutorsapp.ui.viewmodel.TutorViewModel;
 
 /**
@@ -91,7 +94,15 @@ public class TutorProfileFragment extends Fragment {
         });
 
         btnRequestClass.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Clase reservada correctamente!", Toast.LENGTH_SHORT).show();
+            Bundle bundle = new Bundle();
+            bundle.putInt("tutorId", tutorId);
+
+            ReservaClaseFragment reservaClaseFragment = new ReservaClaseFragment();
+            reservaClaseFragment.setArguments(bundle);
+
+            NavController navController = NavHostFragment.findNavController(TutorProfileFragment.this);
+
+            navController.navigate(R.id.reservaClaseFragment, bundle);
         });
 
         return view;
