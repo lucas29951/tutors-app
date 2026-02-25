@@ -6,6 +6,8 @@ import androidx.lifecycle.LiveData;
 
 import com.devs.tutorsapp.data.local.dao.TutorDao;
 import com.devs.tutorsapp.data.local.database.AppDatabase;
+import com.devs.tutorsapp.data.local.entity.DisponibilidadEntity;
+import com.devs.tutorsapp.data.local.entity.MateriaEntity;
 import com.devs.tutorsapp.data.local.entity.TutorEntity;
 
 import java.util.List;
@@ -40,6 +42,14 @@ public class TutorRepository {
 
     public LiveData<TutorEntity> getTutorById(int id) {
         return tutorDao.getTutorById(id);
+    }
+
+    public LiveData<List<DisponibilidadEntity>> getDisponibilidadesByTutor(int id) {
+        return tutorDao.getDisponibilidadesByTutor(id);
+    }
+
+    public LiveData<List<MateriaEntity>> getMateriasByTutor(int id) {
+        return tutorDao.getMateriasByTutor(id);
     }
 
 }
