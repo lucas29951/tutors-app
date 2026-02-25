@@ -57,6 +57,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/txtNameTutor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rafael Funes"
@@ -64,6 +65,7 @@
                         android:textSize="16sp"/>
 
                     <TextView
+                        android:id="@+id/txtStatsTutor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="⭐ 4.8 • 124 clases"
@@ -71,6 +73,7 @@
                         android:textSize="12sp"/>
 
                     <TextView
+                        android:id="@+id/txtDescTutor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Tutor experto en Matemáticas y Física"
@@ -127,6 +130,20 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="MARTES"
+            android:textColor="#90A4AE"
+            android:layout_marginTop="10dp"/>
+
+        <LinearLayout
+            android:id="@+id/containerTuesday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="MIÉRCOLES"
             android:textColor="#90A4AE"
             android:layout_marginTop="12dp"/>
@@ -147,6 +164,20 @@
 
         <LinearLayout
             android:id="@+id/containerThursday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="VIERNES"
+            android:textColor="#90A4AE"
+            android:layout_marginTop="10dp"/>
+
+        <LinearLayout
+            android:id="@+id/containerFriday"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
