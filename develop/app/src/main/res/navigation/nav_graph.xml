@@ -35,4 +35,15 @@
 
     </fragment>
 
+    <fragment
+        android:id="@+id/reservaClaseFragment"
+        android:name="com.devs.tutorsapp.ui.clase.ReservaClaseFragment"
+        android:label="Reservar Clase">
+
+        <argument
+            android:name="tutorId"
+            app:argType="integer"/>
+
+    </fragment>
+
 </navigation>
