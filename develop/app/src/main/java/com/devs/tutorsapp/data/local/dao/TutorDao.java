@@ -5,6 +5,9 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 import androidx.room.Delete;
+
+import com.devs.tutorsapp.data.local.entity.DisponibilidadEntity;
+import com.devs.tutorsapp.data.local.entity.MateriaEntity;
 import com.devs.tutorsapp.data.local.entity.TutorEntity;
 import java.util.List;
 import androidx.lifecycle.LiveData;
@@ -30,5 +33,13 @@ public interface TutorDao {
 
     @Query("SELECT * FROM tutores WHERE tutor_id = :tutor_id")
     LiveData<TutorEntity> getTutorById(int tutor_id);
+
+    @Query("SELECT * FROM disponibilidades WHERE tutor_id = :tutorId")
+    LiveData<List<DisponibilidadEntity>> getDisponibilidadesByTutor(int tutorId);
+
+    @Query("SELECT m.* FROM materias m " + 
+            "INNER JOIN tutor_materia tm ON m.materia_id = tm.materia_id " +
+            "WHERE tm.tutor_id = :tutorId")
+    LiveData<List<MateriaEntity>> getMateriasByTutor(int tutorId);
 
 }
