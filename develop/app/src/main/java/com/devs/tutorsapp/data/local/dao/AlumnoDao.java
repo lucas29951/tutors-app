@@ -36,4 +36,7 @@ public interface AlumnoDao {
 
     @Query("DELETE FROM alumnos WHERE alumno_id = :alumnoId")
     void deleteAlumnoById(int alumnoId);
+
+    @Query("SELECT * FROM alumnos WHERE alumno_id = :alumno_id")
+    LiveData<AlumnoEntity> getAlumnoById(int alumno_id);
 }
