@@ -1,6 +1,5 @@
 package com.devs.tutorsapp.ui.clase.adapter;
 
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,21 +9,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.devs.tutorsapp.R;
-import com.devs.tutorsapp.data.local.entity.ClaseEntity;
-import com.devs.tutorsapp.data.model.Clase;
+import com.devs.tutorsapp.data.model.ClaseDetalle;
 
 import java.util.List;
 
 public class ClasesAdapter extends RecyclerView.Adapter<ClasesAdapter.ViewHolder> {
 
-    private List<ClaseEntity> list;
+    private List<ClaseDetalle> lista;
 
-    public ClasesAdapter(List<ClaseEntity> list) {
-        this.list = list;
+    public ClasesAdapter(List<ClaseDetalle> lista) {
+        this.lista = lista;
     }
 
     public ClasesAdapter() {
-        this.list = null;
+        this.lista = null;
     }
 
     @NonNull
@@ -37,10 +35,10 @@ public class ClasesAdapter extends RecyclerView.Adapter<ClasesAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ClaseEntity item = list.get(position);
+        ClaseDetalle item = lista.get(position);
 
-        holder.name.setText("ID de Tutor: " + item.getTutor_id());
-        holder.date.setText(item.getFecha() + " " + item.getHora_inicio());
+        holder.name.setText(item.tutorNombre + " " + item.tutorApellido);
+        holder.date.setText(item.materiaNombre + " - " + item.getFecha() + " " + item.getHora_inicio());
 
         if (item.getEstado().equals("Pending")) {
             holder.statusDot.setBackgroundResource(R.drawable.bg_status_dot_pending);
@@ -53,11 +51,11 @@ public class ClasesAdapter extends RecyclerView.Adapter<ClasesAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return lista.size();
     }
 
-    public void setData(List<ClaseEntity> list) {
-        this.list = list;
+    public void setData(List<ClaseDetalle> lista) {
+        this.lista = lista;
         notifyDataSetChanged();
     }
 
