@@ -107,29 +107,103 @@ public abstract class AppDatabase extends RoomDatabase {
 
         android.util.Log.d("devtest", "Cargando Tutores...");
 
-        tutorDao.insertTutor(new TutorEntity("Carlos", "Pérez", "carlos.perez@gmail.com", "1234567890", "", "", "", 19, 5));
-        tutorDao.insertTutor(new TutorEntity("Laura", "Gómez", "laura.gomez@gmail.com", "9876543210", "", "", "", 21, 3));
-        tutorDao.insertTutor(new TutorEntity("María", "Díaz", "maria.diaz@gmail.com", "5555555555", "", "", "", 60, 7));
-        tutorDao.insertTutor(new TutorEntity("Javier", "López", "javier.lopez@gmail.com", "9999999999", "", "", "", 32, 8));
-        tutorDao.insertTutor(new TutorEntity("Ana", "Martínez", "ana.martinez@gmail.com", "7777777777", "", "", "", 42, 7));
-        tutorDao.insertTutor(new TutorEntity("Pedro", "Sánchez", "pedro.sanchez@gmail.com", "4444444444", "", "", "", 25, 6));
-        tutorDao.insertTutor(new TutorEntity("Lucía", "Fernández", "lucia.fernandez@gmail.com", "2222222222", "", "", "", 21, 7));
-        tutorDao.insertTutor(new TutorEntity("Diego", "Ramírez", "diego.ramirez@gmail.com", "8888888888", "", "", "", 34, 7));
-        tutorDao.insertTutor(new TutorEntity("Sofía", "Torres", "sofia.torres@gmail.com", "6666666666", "", "", "", 27, 6));
-        tutorDao.insertTutor(new TutorEntity("Martín", "Castro", "martin.castro@gmail.com", "3333333333", "", "", "", 30, 8));
-        tutorDao.insertTutor(new TutorEntity("Valentina", "Ruiz", "valentina.ruiz@gmail.com", "1111111111", "", "", "", 13, 7));
-        tutorDao.insertTutor(new TutorEntity("Andrés", "Morales", "andres.morales@gmail.com", "0000000000", "", "", "", 15, 6));
-        tutorDao.insertTutor(new TutorEntity("Camila", "Herrera", "camila.herrera@gmail.com", "9453299999", "", "", "", 23, 5));
-        tutorDao.insertTutor(new TutorEntity("Nicolás", "Vega", "nicolas.vega@gmail.com", "3257294389", "", "", "", 36, 7));
-        tutorDao.insertTutor(new TutorEntity("Paula", "Rojas", "paula.rojas@gmail.com", "8539605098", "", "", "", 12, 6));
+        tutorDao.insertTutor(new TutorEntity("Carlos", "Pérez", "carlos.perez@gmail.com", "1234567890",
+                "Av. Rivadavia 1234, Buenos Aires",
+                "",
+                "Profesor de Matemáticas con enfoque práctico. Ayuda a estudiantes secundarios y universitarios a mejorar su rendimiento.",
+                19, 5));
+
+        tutorDao.insertTutor(new TutorEntity("Laura", "Gómez", "laura.gomez@gmail.com", "9876543210",
+                "Calle San Martín 456, Córdoba",
+                "",
+                "Especialista en Lengua y Literatura. Clases dinámicas para mejorar redacción, comprensión y análisis de textos.",
+                21, 3));
+
+        tutorDao.insertTutor(new TutorEntity("María", "Díaz", "maria.diaz@gmail.com", "5555555555",
+                "Av. Belgrano 789, Rosario",
+                "",
+                "Profesora de Física con amplia experiencia. Explicaciones claras y resolución paso a paso de problemas complejos.",
+                60, 7));
+
+        tutorDao.insertTutor(new TutorEntity("Javier", "López", "javier.lopez@gmail.com", "9999999999",
+                "Calle Mitre 321, Mendoza",
+                "",
+                "Tutor de Programación (Java y Python). Ideal para principiantes y estudiantes universitarios.",
+                32, 8));
+
+        tutorDao.insertTutor(new TutorEntity("Ana", "Martínez", "ana.martinez@gmail.com", "7777777777",
+                "Av. Colón 654, Córdoba",
+                "",
+                "Docente de Inglés con enfoque conversacional. Mejora tu speaking y comprensión auditiva.",
+                42, 7));
+
+        tutorDao.insertTutor(new TutorEntity("Pedro", "Sánchez", "pedro.sanchez@gmail.com", "4444444444",
+                "Calle Sarmiento 987, La Plata",
+                "",
+                "Profesor de Historia apasionado. Clases didácticas para secundaria y preparación de exámenes.",
+                25, 6));
+
+        tutorDao.insertTutor(new TutorEntity("Lucía", "Fernández", "lucia.fernandez@gmail.com", "2222222222",
+                "Av. Alem 741, Bahía Blanca",
+                "",
+                "Especialista en Química. Explica conceptos difíciles de forma sencilla y práctica.",
+                21, 7));
+
+        tutorDao.insertTutor(new TutorEntity("Diego", "Ramírez", "diego.ramirez@gmail.com", "8888888888",
+                "Calle Urquiza 852, Tucumán",
+                "",
+                "Tutor de Matemáticas avanzadas. Ideal para ingresos universitarios y materias complejas.",
+                34, 7));
+
+        tutorDao.insertTutor(new TutorEntity("Sofía", "Torres", "sofia.torres@gmail.com", "6666666666",
+                "Av. San Juan 963, Buenos Aires",
+                "",
+                "Profesora de Biología. Clases claras con ejemplos prácticos y apoyo para exámenes.",
+                27, 6));
+
+        tutorDao.insertTutor(new TutorEntity("Martín", "Castro", "martin.castro@gmail.com", "3333333333",
+                "Calle España 159, Salta",
+                "",
+                "Docente de Economía y Contabilidad. Explicaciones simples y aplicadas a la vida real.",
+                30, 8));
+
+        tutorDao.insertTutor(new TutorEntity("Valentina", "Ruiz", "valentina.ruiz@gmail.com", "1111111111",
+                "Av. Libertad 753, Mar del Plata",
+                "",
+                "Estudiante avanzada que brinda apoyo en materias básicas. Ideal para nivel primario y secundario.",
+                13, 7));
+
+        tutorDao.insertTutor(new TutorEntity("Andrés", "Morales", "andres.morales@gmail.com", "0000000000",
+                "Calle Pellegrini 246, Santa Fe",
+                "",
+                "Tutor de Geografía. Clases dinámicas con mapas y ejemplos prácticos.",
+                15, 6));
+
+        tutorDao.insertTutor(new TutorEntity("Camila", "Herrera", "camila.herrera@gmail.com", "9453299999",
+                "Av. San Martín 852, Neuquén",
+                "",
+                "Profesora de Inglés enfocada en gramática y escritura. Ideal para exámenes internacionales.",
+                23, 5));
+
+        tutorDao.insertTutor(new TutorEntity("Nicolás", "Vega", "nicolas.vega@gmail.com", "3257294389",
+                "Calle Lavalle 369, Buenos Aires",
+                "",
+                "Tutor de Programación web (HTML, CSS, JS). Aprende creando proyectos reales.",
+                36, 7));
+
+        tutorDao.insertTutor(new TutorEntity("Paula", "Rojas", "paula.rojas@gmail.com", "8539605098",
+                "Av. Moreno 147, Córdoba",
+                "",
+                "Profesora de Psicología. Clases claras y acompañamiento en trabajos prácticos.",
+                12, 6));
 
         android.util.Log.d("devtest", "Cargando Alumnos...");
 
-        alumnoDao.insertAlumno(new AlumnoEntity("Lucia", "Robles", "luciar@gmail.com", "lucia123", "", "", ""));
-        alumnoDao.insertAlumno(new AlumnoEntity("Sofía", "López", "sofial@mail.com", "sofia123", "", "", ""));
-        alumnoDao.insertAlumno(new AlumnoEntity("Martín", "Díaz", "martind@mail.com", "martin123", "", "", ""));
-        alumnoDao.insertAlumno(new AlumnoEntity("Camila", "Torres", "camilat@mail.com", "cami123", "", "", ""));
-        alumnoDao.insertAlumno(new AlumnoEntity("Pedro", "Gómez", "pedrog@mail.com", "pedro123", "", "", ""));
+        alumnoDao.insertAlumno(new AlumnoEntity("Lucia", "Robles", "luciar@gmail.com", "lucia123", "837462954", "Calle Rivadavia 195, Tucuman", ""));
+        alumnoDao.insertAlumno(new AlumnoEntity("Sofía", "López", "sofial@gmail.com", "sofia123", "940988640", "Av. Bolivia 315, Salta", ""));
+        alumnoDao.insertAlumno(new AlumnoEntity("Martín", "Díaz", "martind@gmail.com", "martin123", "651950034", "Av. Belgrano 21, Santiago del Estero", ""));
+        alumnoDao.insertAlumno(new AlumnoEntity("Camila", "Torres", "camilat@gmail.com", "cami123", "610599538", "Calle Congreso 54, San Luis", ""));
+        alumnoDao.insertAlumno(new AlumnoEntity("Pedro", "Gómez", "pedrog@gmail.com", "pedro123", "881044325", "Calle Punilla 92, Cordoba", ""));
 
         android.util.Log.d("devtest", "Cargando clases...");
 
