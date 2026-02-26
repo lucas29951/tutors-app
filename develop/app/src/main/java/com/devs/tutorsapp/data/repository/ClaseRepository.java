@@ -11,6 +11,7 @@ import androidx.lifecycle.LiveData;
 import com.devs.tutorsapp.data.local.dao.ClaseDao;
 import com.devs.tutorsapp.data.local.database.AppDatabase;
 import com.devs.tutorsapp.data.local.entity.ClaseEntity;
+import com.devs.tutorsapp.data.model.ClaseDetalle;
 
 public class ClaseRepository {
 
@@ -48,4 +49,9 @@ public class ClaseRepository {
     public LiveData<List<ClaseEntity>> getClasesByEstadoAndAlumnoId(String status, int alumnoId) {
         return claseDao.getClasesByEstadoAndAlumnoId(status, alumnoId);
     }
+
+    public LiveData<List<ClaseDetalle>> getClasesConDetalles(String estado, int alumno_id) {
+        return claseDao.getClasesConDetalles(estado, alumno_id);
+    }
+
 }
