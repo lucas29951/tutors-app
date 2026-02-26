@@ -35,7 +35,7 @@ public class TutorAdapter extends RecyclerView.Adapter<TutorAdapter.TutorViewHol
         TutorEntity tutor = tutorList.get(position);
 
         holder.nombre.setText(tutor.getNombre() + " " + tutor.getApellido());
-        holder.descripcion.setText(tutor.getDescripcion());
+        holder.descripcion.setText(tutor.getRating() + " ★");
         holder.precio.setText("$ " + tutor.getPrecio() + "/h");
 
         holder.itemView.setOnClickListener(v -> {
