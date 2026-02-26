@@ -7,21 +7,16 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.devs.tutorsapp.R;
-import com.devs.tutorsapp.data.local.entity.ClaseEntity;
-import com.devs.tutorsapp.data.model.Clase;
 import com.devs.tutorsapp.ui.clase.adapter.ClasesAdapter;
 import com.devs.tutorsapp.ui.viewmodel.ClaseViewModel;
 import com.devs.tutorsapp.ui.viewmodel.SessionViewModel;
-import com.devs.tutorsapp.utils.SharedPrefManager;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,7 +33,6 @@ public class ClasesListFragment extends Fragment {
     private String status;
     private ClaseViewModel viewModel;
     private ClasesAdapter adapter;
-    private int idAlumno;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -91,28 +85,14 @@ public class ClasesListFragment extends Fragment {
 
         viewModel = new ViewModelProvider(this).get(ClaseViewModel.class);
 
-//        viewModel.getClasesByEstado(status).observe(getViewLifecycleOwner(), clases -> {
-//            adapter.setData(clases);
-//        });
-
         SessionViewModel session = new ViewModelProvider(requireActivity()).get(SessionViewModel.class);
 
         session.getAlumnoId().observe(getViewLifecycleOwner(), id -> {
             if (id == null || id <= 0) {
-                Log.d("devtest", "ID Invalido: " + id);
                 return;
             }
 
-            Log.d("devtest", "ID de Alumno: " + id);
-            Log.d("devtest", "Estado enviado: " + status);
-
-            viewModel.getClasesByEstadoAndAlumnoId(status, id).observe(getViewLifecycleOwner(), clases -> {
-                Log.d("devtest", "Clases encontradas: " + clases.size());
-
-                for (ClaseEntity c : clases) {
-                    Log.d("devtest", "Clase: " + c.getEstado() + " ID Alumno: " + c.getAlumno_id());
-                }
-
+            viewModel.getClasesConDetalles(status, id).observe(getViewLifecycleOwner(), clases -> {
                 adapter.setData(clases);
             });
         });
@@ -120,13 +100,4 @@ public class ClasesListFragment extends Fragment {
         return view;
     }
 
-    private List<Clase> getMockData(String status) {
-        List<Clase> list = new ArrayList<>();
-
-        list.add(new Clase("Dr. Emily Carter", "June 15, 2024", status));
-        list.add(new Clase("Mr. David Lee", "June 16, 2024", status));
-        list.add(new Clase("Ms. Sarah Chen", "June 17, 2024", status));
-
-        return list;
-    }
 }
