@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -225,6 +226,8 @@ public class ReservaClaseFragment extends Fragment {
             viewModel.insertarClase(newClase);
 
             Toast.makeText(getContext(), "Clase solicitada", Toast.LENGTH_SHORT).show();
+
+            NavHostFragment.findNavController(this).popBackStack();
         });
     }
 
