@@ -8,7 +8,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +16,7 @@ import android.widget.TextView;
 
 import com.devs.tutorsapp.R;
 import com.devs.tutorsapp.ui.auth.LoginActivity;
+import com.devs.tutorsapp.ui.viewmodel.AlumnoViewModel;
 import com.devs.tutorsapp.ui.viewmodel.SessionViewModel;
 import com.devs.tutorsapp.utils.SharedPrefManager;
 
@@ -36,6 +36,7 @@ public class PerfilFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private SessionViewModel sessionViewModel;
+    private AlumnoViewModel alumnoViewModel;
     private TextView tvProfileName, tvProfileEmail;
     private Button btnLogout;
 
@@ -85,13 +86,16 @@ public class PerfilFragment extends Fragment {
         btnLogout = view.findViewById(R.id.btnLogout);
 
         sessionViewModel = new ViewModelProvider(requireActivity()).get(SessionViewModel.class);
+        alumnoViewModel = new ViewModelProvider(requireActivity()).get(AlumnoViewModel.class);
 
-        String nombre = getActivity().getIntent().getStringExtra("nombreAlumno");
-        String apellido = getActivity().getIntent().getStringExtra("apellidoAlumno");
-        String email = getActivity().getIntent().getStringExtra("emailAlumno");
-
-        tvProfileName.setText(nombre + " " + apellido);
-        tvProfileEmail.setText(email);
+        sessionViewModel.getAlumnoId().observe(getViewLifecycleOwner(), id -> {
+            alumnoViewModel.getAlumnoById(id).observe(getViewLifecycleOwner(), alu -> {
+                if (alu != null) {
+                    tvProfileName.setText(alu.getNombre() + " " + alu.getApellido());
+                    tvProfileEmail.setText(alu.getEmail());
+                }
+            });
+        });
 
         btnLogout.setOnClickListener(v -> {
             SharedPrefManager.getInstance(requireContext()).logout();
