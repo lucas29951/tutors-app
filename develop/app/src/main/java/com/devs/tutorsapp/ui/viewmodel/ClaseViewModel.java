@@ -8,6 +8,7 @@ import android.app.Application;
 import android.util.Log;
 
 import com.devs.tutorsapp.data.local.entity.ClaseEntity;
+import com.devs.tutorsapp.data.model.ClaseDetalle;
 import com.devs.tutorsapp.data.repository.ClaseRepository;
 import com.devs.tutorsapp.data.repository.RepositoryCallback;
 
@@ -52,6 +53,10 @@ public class ClaseViewModel extends AndroidViewModel {
 
     public LiveData<List<ClaseEntity>> getClasesByEstadoAndAlumnoId(String status, int alumnoId) {
         return repository.getClasesByEstadoAndAlumnoId(status, alumnoId);
+    }
+
+    public LiveData<List<ClaseDetalle>> getClasesConDetalles(String estado, int alumno_id) {
+        return repository.getClasesConDetalles(estado, alumno_id);
     }
 
 }
