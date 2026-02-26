@@ -43,14 +43,11 @@ public class ClasesAdapter extends RecyclerView.Adapter<ClasesAdapter.ViewHolder
         holder.date.setText(item.getFecha() + " " + item.getHora_inicio());
 
         if (item.getEstado().equals("Pending")) {
-            //punto naranja
-            holder.statusDot.setBackgroundColor(Color.parseColor("#FF5722"));
+            holder.statusDot.setBackgroundResource(R.drawable.bg_status_dot_pending);
         } else if(item.getEstado().equals("Confirmed")) {
-            //punto verde
-            holder.statusDot.setBackgroundColor(Color.parseColor("#0AD02D"));
+            holder.statusDot.setBackgroundResource(R.drawable.bg_status_dot_confirmed);
         } else {
-            //punto gris
-            holder.statusDot.setBackgroundColor(Color.parseColor("#818181"));
+            holder.statusDot.setBackgroundResource(R.drawable.bg_status_dot_completed);
         }
     }
 
