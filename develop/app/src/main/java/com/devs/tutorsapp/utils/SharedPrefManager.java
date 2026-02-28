@@ -2,6 +2,8 @@ package com.devs.tutorsapp.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
+
 public class SharedPrefManager {
 
     private static final String PREF_NAME = "teachme_prefs";
@@ -61,7 +63,10 @@ public class SharedPrefManager {
     }
 
     public void logout() {
-        prefs.edit().clear().putBoolean(KEY_FIRST_TIME, false).apply();
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.clear();
+        editor.putBoolean(KEY_FIRST_TIME, false);
+        editor.apply();
     }
 
     public boolean isFirstTime() {
