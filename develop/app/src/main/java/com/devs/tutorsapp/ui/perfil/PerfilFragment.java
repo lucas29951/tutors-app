@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -89,6 +90,8 @@ public class PerfilFragment extends Fragment {
         alumnoViewModel = new ViewModelProvider(requireActivity()).get(AlumnoViewModel.class);
 
         sessionViewModel.getAlumnoId().observe(getViewLifecycleOwner(), id -> {
+            if (id == null) return;
+
             alumnoViewModel.getAlumnoById(id).observe(getViewLifecycleOwner(), alu -> {
                 if (alu != null) {
                     tvProfileName.setText(alu.getNombre() + " " + alu.getApellido());
@@ -101,12 +104,12 @@ public class PerfilFragment extends Fragment {
             SharedPrefManager.getInstance(requireContext()).logout();
 
             sessionViewModel.clearSession();
-
+            
             Intent intent = new Intent(requireActivity(), LoginActivity.class);
-
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
             startActivity(intent);
+            requireActivity().finish();
         });
     }
 }
