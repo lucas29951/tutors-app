@@ -2,8 +2,12 @@ package com.devs.tutorsapp.ui.clase;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,7 +20,6 @@ import com.devs.tutorsapp.ui.clase.adapter.ClasesAdapter;
 import com.devs.tutorsapp.ui.viewmodel.ClaseViewModel;
 import com.devs.tutorsapp.ui.viewmodel.SessionViewModel;
 
-import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -69,18 +72,29 @@ public class ClasesListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_clases_list, container, false);
+        return inflater.inflate(R.layout.fragment_clases_list, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerClases);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        adapter = new ClasesAdapter(new ArrayList<>());
+        adapter = new ClasesAdapter(item -> {
+            Bundle bundle = new Bundle();
+            bundle.putInt("clase_id", item.getClase_id());
+
+            NavController navController = Navigation.findNavController(requireActivity(), R.id.fragment_container);
+            navController.navigate(R.id.claseDetalleFragment, bundle);
+        });
         recyclerView.setAdapter(adapter);
 
         if (getArguments() != null) {
             status = getArguments().getString(ARG_STATUS);
         } else {
-            status = "pending";
+            status = "Pending";
         }
 
         viewModel = new ViewModelProvider(this).get(ClaseViewModel.class);
@@ -97,7 +111,6 @@ public class ClasesListFragment extends Fragment {
             });
         });
 
-        return view;
     }
 
 }
