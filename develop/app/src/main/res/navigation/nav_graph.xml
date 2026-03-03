@@ -57,4 +57,14 @@
 
     </fragment>
 
+    <fragment
+        android:id="@+id/resenaFragment"
+        android:name="com.devs.tutorsapp.ui.resena.ResenaFragment"
+        android:label="Reseña">
+
+        <argument android:name="tutor_id" app:argType="integer"/>
+        <argument android:name="alumno_id" app:argType="integer"/>
+
+    </fragment>
+
 </navigation>
