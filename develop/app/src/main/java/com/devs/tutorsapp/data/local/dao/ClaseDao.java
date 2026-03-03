@@ -28,6 +28,9 @@ public interface ClaseDao {
     @Query("SELECT * FROM clases WHERE clase_id = :clase_id")
     ClaseEntity getById(int clase_id);
 
+    @Query("SELECT * FROM clases WHERE clase_id = :clase_id")
+    LiveData<ClaseEntity> getClaseById(int clase_id);
+
     @Query("SELECT * FROM clases WHERE alumno_id = :alumno_id")
     LiveData<List<ClaseEntity>> getClasesByAlumnoId(int alumno_id);
 

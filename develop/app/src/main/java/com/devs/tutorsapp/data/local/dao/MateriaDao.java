@@ -27,4 +27,7 @@ public interface MateriaDao {
     @Query("SELECT * FROM materias WHERE materia_id = :materia_id")
     MateriaEntity getById(int materia_id);
 
+    @Query("SELECT * FROM materias WHERE materia_id = :materia_id")
+    LiveData<MateriaEntity> getMateriaById(int materia_id);
+
 }
