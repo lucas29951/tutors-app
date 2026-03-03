@@ -40,4 +40,8 @@ public class ClaseDetalleViewModel extends AndroidViewModel {
         return materiaRepository.getMateriaById(id);
     }
 
+    public void deleteClase(int id) {
+        claseRepository.deleteClaseById(id);
+    }
+
 }
