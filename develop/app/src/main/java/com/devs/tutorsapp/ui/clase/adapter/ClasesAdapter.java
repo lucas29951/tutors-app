@@ -1,21 +1,31 @@
 package com.devs.tutorsapp.ui.clase.adapter;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.devs.tutorsapp.R;
 import com.devs.tutorsapp.data.model.ClaseDetalle;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ClasesAdapter extends RecyclerView.Adapter<ClasesAdapter.ViewHolder> {
 
     private List<ClaseDetalle> lista;
+    private OnItemClickListener listener;
+
+    public interface OnItemClickListener {
+        void onItemClick(ClaseDetalle item);
+    }
 
     public ClasesAdapter(List<ClaseDetalle> lista) {
         this.lista = lista;
@@ -23,6 +33,11 @@ public class ClasesAdapter extends RecyclerView.Adapter<ClasesAdapter.ViewHolder
 
     public ClasesAdapter() {
         this.lista = null;
+    }
+
+    public ClasesAdapter(OnItemClickListener listener) {
+        this.lista = new ArrayList<>();
+        this.listener = listener;
     }
 
     @NonNull
@@ -47,11 +62,17 @@ public class ClasesAdapter extends RecyclerView.Adapter<ClasesAdapter.ViewHolder
         } else {
             holder.statusDot.setBackgroundResource(R.drawable.bg_status_dot_completed);
         }
+
+        holder.itemView.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onItemClick(item);
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return lista.size();
+        return lista != null ? lista.size() : 0;
     }
 
     public void setData(List<ClaseDetalle> lista) {
