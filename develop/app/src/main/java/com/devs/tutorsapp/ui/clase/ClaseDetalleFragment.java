@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -128,11 +129,12 @@ public class ClaseDetalleFragment extends Fragment {
                 btnAction.setBackgroundColor(getResources().getColor(android.R.color.holo_red_dark));
 
                 btnAction.setOnClickListener(v -> {
-                    if (claseId > 0) {
-                        viewModel.deleteClase(claseId);
-                        Toast.makeText(getContext(), "Clase cancelada", Toast.LENGTH_SHORT).show();
-                        requireActivity().onBackPressed();
-                    }
+                    showDialogConfirmation();
+//                    if (claseId > 0) {
+//                        viewModel.deleteClase(claseId);
+//                        Toast.makeText(getContext(), "Clase cancelada", Toast.LENGTH_SHORT).show();
+//                        requireActivity().onBackPressed();
+//                    }
                 });
             } else if (clase.getEstado().equals("Completed")) {
                 btnAction.setText("Añadir reseña");
@@ -147,5 +149,23 @@ public class ClaseDetalleFragment extends Fragment {
                 btnAction.setClickable(false);
             }
         });
+    }
+
+    private void showDialogConfirmation() {
+        new AlertDialog.Builder(requireContext())
+                .setTitle("Cancelar clase")
+                .setMessage("¿Estas seguro que deseas cancelar la clase?")
+                .setPositiveButton("Si, cancelar", (dialog, wich) -> {
+                    if (claseId > 0) {
+                        viewModel.deleteClase(claseId);
+                        Toast.makeText(getContext(), "Clase cancelada", Toast.LENGTH_SHORT).show();
+                        requireActivity().onBackPressed();
+                    }
+                })
+                .setNegativeButton("No", (dialog, which) -> {
+                    dialog.dismiss();
+                })
+                .setCancelable(true)
+                .show();
     }
 }
