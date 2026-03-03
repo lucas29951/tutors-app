@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.devs.tutorsapp.R;
 import com.devs.tutorsapp.ui.viewmodel.ClaseDetalleViewModel;
@@ -33,7 +34,7 @@ public class ClaseDetalleFragment extends Fragment {
     private String mParam2;
 
     private TextView tvTutorName, tvTutorStats, tvTutorDesc, tvTutorPrice, tvMateria, tvFecha, tvHora, tvEstado;
-    private Button btnResena;
+    private Button btnAction;
     private ClaseDetalleViewModel viewModel;
     private int claseId;
 
@@ -87,7 +88,7 @@ public class ClaseDetalleFragment extends Fragment {
         tvFecha = view.findViewById(R.id.tvFecha);
         tvHora = view.findViewById(R.id.tvHora);
         tvEstado = view.findViewById(R.id.tvEstado);
-        btnResena = view.findViewById(R.id.btnResena);
+        btnAction = view.findViewById(R.id.btnAction);
 
         viewModel = new ViewModelProvider(this).get(ClaseDetalleViewModel.class);
 
@@ -97,10 +98,6 @@ public class ClaseDetalleFragment extends Fragment {
         }
 
         loadData();
-
-        btnResena.setOnClickListener(v -> {
-            //navegar a la pantalla
-        });
     }
 
     private void loadData() {
@@ -125,6 +122,26 @@ public class ClaseDetalleFragment extends Fragment {
                     tvMateria.setText(materia.getNombre());
                 }
             });
+
+            if (clase.getEstado().equals("Pending")) {
+                btnAction.setText("Cancelar clase");
+                btnAction.setBackgroundColor(getResources().getColor(android.R.color.holo_red_dark));
+
+                btnAction.setOnClickListener(v -> {
+                    Toast.makeText(getContext(), "Clase cancelada", Toast.LENGTH_SHORT).show();
+                });
+            } else if (clase.getEstado().equals("Completed")) {
+                btnAction.setText("Añadir reseña");
+
+                btnAction.setOnClickListener(v -> {
+                    Toast.makeText(getContext(), "Ir a reseña", Toast.LENGTH_SHORT).show();
+                });
+            } else if (clase.getEstado().equals("Confirmed")) {
+                btnAction.setText("Cancelar clase");
+                btnAction.setBackgroundColor(getResources().getColor(android.R.color.darker_gray));
+                btnAction.setActivated(false);
+                btnAction.setClickable(false);
+            }
         });
     }
 }
