@@ -22,6 +22,9 @@ public interface ClaseDao {
     @Delete
     void deleteClase(ClaseEntity clase);
 
+    @Query("DELETE FROM clases WHERE clase_id = :clase_id")
+    void deleteById(int clase_id);
+
     @Query("SELECT * FROM clases")
     LiveData<List<ClaseEntity>> getAllClases();
 
