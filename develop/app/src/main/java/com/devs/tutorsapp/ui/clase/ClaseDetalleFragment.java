@@ -128,7 +128,11 @@ public class ClaseDetalleFragment extends Fragment {
                 btnAction.setBackgroundColor(getResources().getColor(android.R.color.holo_red_dark));
 
                 btnAction.setOnClickListener(v -> {
-                    Toast.makeText(getContext(), "Clase cancelada", Toast.LENGTH_SHORT).show();
+                    if (claseId > 0) {
+                        viewModel.deleteClase(claseId);
+                        Toast.makeText(getContext(), "Clase cancelada", Toast.LENGTH_SHORT).show();
+                        requireActivity().onBackPressed();
+                    }
                 });
             } else if (clase.getEstado().equals("Completed")) {
                 btnAction.setText("Añadir reseña");
