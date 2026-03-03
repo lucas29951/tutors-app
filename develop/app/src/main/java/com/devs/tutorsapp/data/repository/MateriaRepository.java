@@ -5,6 +5,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import android.content.Context;
 
+import androidx.lifecycle.LiveData;
+
 import com.devs.tutorsapp.data.local.dao.MateriaDao;
 import com.devs.tutorsapp.data.local.database.AppDatabase;
 import com.devs.tutorsapp.data.local.entity.MateriaEntity;
@@ -29,5 +31,9 @@ public class MateriaRepository {
             List<MateriaEntity> lista = (materiaDao.getAllMaterias()).getValue();
             callback.onSuccess(lista);
         });
+    }
+
+    public LiveData<MateriaEntity> getMateriaById(int id) {
+        return materiaDao.getMateriaById(id);
     }
 }

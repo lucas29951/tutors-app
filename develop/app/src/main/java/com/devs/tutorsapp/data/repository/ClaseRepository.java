@@ -4,7 +4,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ExecutorService;
 import java.util.List;
 import android.content.Context;
-import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
@@ -52,6 +51,10 @@ public class ClaseRepository {
 
     public LiveData<List<ClaseDetalle>> getClasesConDetalles(String estado, int alumno_id) {
         return claseDao.getClasesConDetalles(estado, alumno_id);
+    }
+
+    public LiveData<ClaseEntity> getClaseById(int id) {
+        return claseDao.getClaseById(id);
     }
 
 }
