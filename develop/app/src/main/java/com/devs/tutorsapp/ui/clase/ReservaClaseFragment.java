@@ -51,6 +51,7 @@ public class ReservaClaseFragment extends Fragment {
     private Button btnRequest;
     private ImageView btnBack;
     private TextView txtNameTutor, txtStatsTutor, txtDescTutor;
+    private TextView tvMondayTitle, tvTuesdayTitle, tvWednesdayTitle, tvThursdayTitle, tvFridayTitle;
     private int tutorId = 1;
     private int alumnoId = 1;
     private int selectedSubject = -1;
@@ -192,6 +193,27 @@ public class ReservaClaseFragment extends Fragment {
                 case "viernes": containerFriday.addView(view); break;
             }
         }
+
+        if (containerMonday.getChildCount() == 0) {
+            tvMondayTitle.setVisibility(View.GONE);
+            containerMonday.setVisibility(View.GONE);
+        }
+        if (containerTuesday.getChildCount() == 0) {
+            tvTuesdayTitle.setVisibility(View.GONE);
+            containerTuesday.setVisibility(View.GONE);
+        }
+        if (containerWednesday.getChildCount() == 0) {
+            tvWednesdayTitle.setVisibility(View.GONE);
+            containerWednesday.setVisibility(View.GONE);
+        }
+        if (containerThursday.getChildCount() == 0) {
+            tvThursdayTitle.setVisibility(View.GONE);
+            containerThursday.setVisibility(View.GONE);
+        }
+        if (containerFriday.getChildCount() == 0) {
+            tvFridayTitle.setVisibility(View.GONE);
+            containerFriday.setVisibility(View.GONE);
+        }
     }
 
     private void clearSubjects() {
@@ -243,6 +265,11 @@ public class ReservaClaseFragment extends Fragment {
         txtNameTutor = view.findViewById(R.id.txtNameTutor);
         txtStatsTutor = view.findViewById(R.id.txtStatsTutor);
         txtDescTutor = view.findViewById(R.id.txtDescTutor);
+        tvMondayTitle = view.findViewById(R.id.tvMondayTitle);
+        tvTuesdayTitle = view.findViewById(R.id.tvTuesdayTitle);
+        tvWednesdayTitle = view.findViewById(R.id.tvWednesdayTitle);
+        tvThursdayTitle = view.findViewById(R.id.tvThursdayTitle);
+        tvFridayTitle = view.findViewById(R.id.tvFridayTitle);
     }
 
 }
