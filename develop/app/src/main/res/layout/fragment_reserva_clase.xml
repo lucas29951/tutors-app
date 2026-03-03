@@ -94,7 +94,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Materias disponibles"
-            android:textColor="@android:color/white"
+            android:textColor="#90A4AE"
             android:textStyle="bold"
             android:layout_marginTop="20dp"/>
 
@@ -109,11 +109,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Días disponibles"
-            android:textColor="@android:color/white"
+            android:textColor="#90A4AE"
             android:textStyle="bold"
             android:layout_marginTop="20dp"/>
 
         <TextView
+            android:id="@+id/tvMondayTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="LUNES"
@@ -128,6 +129,7 @@
             android:layout_marginTop="8dp"/>
 
         <TextView
+            android:id="@+id/tvTuesdayTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="MARTES"
@@ -142,6 +144,7 @@
             android:layout_marginTop="8dp"/>
 
         <TextView
+            android:id="@+id/tvWednesdayTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="MIÉRCOLES"
@@ -156,6 +159,7 @@
             android:layout_marginTop="8dp"/>
 
         <TextView
+            android:id="@+id/tvThursdayTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="JUEVES"
@@ -170,6 +174,7 @@
             android:layout_marginTop="8dp"/>
 
         <TextView
+            android:id="@+id/tvFridayTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="VIERNES"
