@@ -57,4 +57,7 @@ public class ClaseRepository {
         return claseDao.getClaseById(id);
     }
 
+    public void deleteClaseById(int id) {
+        new Thread(() -> claseDao.deleteById(id)).start();
+    }
 }
