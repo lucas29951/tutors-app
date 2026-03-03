@@ -46,4 +46,15 @@
 
     </fragment>
 
+    <fragment
+        android:id="@+id/claseDetalleFragment"
+        android:name="com.devs.tutorsapp.ui.clase.ClaseDetalleFragment"
+        android:label="Detalle Clase">
+
+        <argument
+            android:name="clase_id"
+            app:argType="integer"/>
+
+    </fragment>
+
 </navigation>
