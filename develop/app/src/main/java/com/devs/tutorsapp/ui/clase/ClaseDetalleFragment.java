@@ -7,7 +7,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -130,17 +132,17 @@ public class ClaseDetalleFragment extends Fragment {
 
                 btnAction.setOnClickListener(v -> {
                     showDialogConfirmation();
-//                    if (claseId > 0) {
-//                        viewModel.deleteClase(claseId);
-//                        Toast.makeText(getContext(), "Clase cancelada", Toast.LENGTH_SHORT).show();
-//                        requireActivity().onBackPressed();
-//                    }
                 });
             } else if (clase.getEstado().equals("Completed")) {
                 btnAction.setText("Añadir reseña");
 
                 btnAction.setOnClickListener(v -> {
-                    Toast.makeText(getContext(), "Ir a reseña", Toast.LENGTH_SHORT).show();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("tutor_id", clase.getTutor_id());
+                    bundle.putInt("alumno_id", clase.getAlumno_id());
+                    bundle.putInt("clase_id", claseId);
+
+                    Navigation.findNavController(v).navigate(R.id.resenaFragment, bundle);
                 });
             } else if (clase.getEstado().equals("Confirmed")) {
                 btnAction.setText("Cancelar clase");
