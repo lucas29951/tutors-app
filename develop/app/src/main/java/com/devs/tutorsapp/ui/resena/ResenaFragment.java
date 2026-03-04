@@ -1,8 +1,14 @@
-package com.devs.tutorsapp.ui;
+package com.devs.tutorsapp.ui.resena;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.NavOptions;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,10 +16,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.Toast;
 
 import com.devs.tutorsapp.R;
+import com.devs.tutorsapp.data.local.entity.ResenaEntity;
+import com.devs.tutorsapp.ui.viewmodel.ClaseDetalleViewModel;
 import com.devs.tutorsapp.ui.viewmodel.ResenaViewModel;
+import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,7 +45,8 @@ public class ResenaFragment extends Fragment {
     private ChipGroup chipGroup;
     private Button btnEnviar;
     private ResenaViewModel viewModel;
-    private int tutorId, alumnoId;
+    private ClaseDetalleViewModel claseDetalleViewModel;
+    private int tutorId, alumnoId, claseId;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -75,5 +90,60 @@ public class ResenaFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_resena, container, false);
     }
 
-    
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        ratingBar = view.findViewById(R.id.ratingBar);
+        etComentario = view.findViewById(R.id.etComentario);
+        chipGroup = view.findViewById(R.id.chipGroup);
+        btnEnviar = view.findViewById(R.id.btnEnviar);
+
+        viewModel = new ViewModelProvider(this).get(ResenaViewModel.class);
+        claseDetalleViewModel = new ViewModelProvider(this).get(ClaseDetalleViewModel.class);
+
+        Bundle args = getArguments();
+        if (args != null) {
+            tutorId = args.getInt("tutor_id");
+            alumnoId = args.getInt("alumno_id");
+            claseId = args.getInt("clase_id");
+        }
+
+        btnEnviar.setOnClickListener(v -> {
+            guardarResena();
+        });
+
+    }
+
+    private void guardarResena() {
+        double rating = ratingBar.getRating();
+        String comentario = etComentario.getText().toString();
+
+        StringBuilder aspectos = new StringBuilder();
+        for (int i = 0; i < chipGroup.getChildCount(); i++) {
+            Chip chip = (Chip) chipGroup.getChildAt(i);
+            if (chip.isChecked()) {
+                aspectos.append(chip.getText()).append(", ");
+            }
+        }
+        aspectos.append(comentario);
+
+        String fecha = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                .format(new Date());
+
+        ResenaEntity newResena = new ResenaEntity(alumnoId, tutorId, rating, aspectos.toString(), fecha);
+
+        viewModel.guardarResena(newResena);
+        claseDetalleViewModel.deleteClase(claseId);
+
+        Toast.makeText(getContext(), "Reseña enviada", Toast.LENGTH_SHORT).show();
+
+        NavController navController = Navigation.findNavController(requireActivity(), R.id.fragment_container);
+
+        NavOptions navOptions = new NavOptions.Builder()
+                .setPopUpTo(R.id.nav_clases, true)
+                        .build();
+
+        navController.navigate(R.id.nav_inicio, null, navOptions);
+    }
 }
