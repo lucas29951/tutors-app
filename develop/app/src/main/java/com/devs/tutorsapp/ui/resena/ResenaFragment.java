@@ -16,12 +16,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.devs.tutorsapp.R;
 import com.devs.tutorsapp.data.local.entity.ResenaEntity;
 import com.devs.tutorsapp.ui.viewmodel.ClaseDetalleViewModel;
 import com.devs.tutorsapp.ui.viewmodel.ResenaViewModel;
+import com.devs.tutorsapp.ui.viewmodel.TutorViewModel;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
@@ -40,12 +42,14 @@ public class ResenaFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private TextView txtTutorInfo, txtTutorDesc, txtRatingLabel;
     private RatingBar ratingBar;
     private EditText etComentario;
     private ChipGroup chipGroup;
     private Button btnEnviar;
     private ResenaViewModel viewModel;
     private ClaseDetalleViewModel claseDetalleViewModel;
+    private TutorViewModel tutorViewModel;
     private int tutorId, alumnoId, claseId;
 
     // TODO: Rename and change types of parameters
@@ -94,6 +98,9 @@ public class ResenaFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        txtTutorInfo = view.findViewById(R.id.txtTutorInfo);
+        txtTutorDesc = view.findViewById(R.id.txtTutorDesc);
+        txtRatingLabel = view.findViewById(R.id.txtRatingLabel);
         ratingBar = view.findViewById(R.id.ratingBar);
         etComentario = view.findViewById(R.id.etComentario);
         chipGroup = view.findViewById(R.id.chipGroup);
@@ -101,6 +108,7 @@ public class ResenaFragment extends Fragment {
 
         viewModel = new ViewModelProvider(this).get(ResenaViewModel.class);
         claseDetalleViewModel = new ViewModelProvider(this).get(ClaseDetalleViewModel.class);
+        tutorViewModel = new ViewModelProvider(this).get(TutorViewModel.class);
 
         Bundle args = getArguments();
         if (args != null) {
@@ -108,6 +116,34 @@ public class ResenaFragment extends Fragment {
             alumnoId = args.getInt("alumno_id");
             claseId = args.getInt("clase_id");
         }
+
+        tutorViewModel.getTutorById(tutorId).observe(getViewLifecycleOwner(), tutor -> {
+            if (tutor != null) {
+                txtTutorInfo.setText(tutor.getNombre() + " " + tutor.getApellido());
+                txtTutorDesc.setText(tutor.getDescripcion());
+            }
+        });
+
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                double puntos = ratingBar.getRating();
+
+                if (puntos == 1.0) {
+                    txtRatingLabel.setText("Malo");
+                } else if (puntos == 2.0) {
+                    txtRatingLabel.setText("Regular");
+                } else if (puntos == 3.0) {
+                    txtRatingLabel.setText("Bueno");
+                } else if (puntos == 4.0) {
+                    txtRatingLabel.setText("Muy bueno");
+                } else if (puntos == 5.0) {
+                    txtRatingLabel.setText("Excelente");
+                } else {
+                    txtRatingLabel.setText("");
+                }
+            }
+        });
 
         btnEnviar.setOnClickListener(v -> {
             guardarResena();
