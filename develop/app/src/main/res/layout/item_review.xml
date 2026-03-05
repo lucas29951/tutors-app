@@ -30,12 +30,14 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tvNomAlu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Ethan Harper"
                     android:textStyle="bold"/>
 
                 <TextView
+                    android:id="@+id/tvDateRev"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2 weeks ago"
@@ -47,6 +49,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tvProm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="★★★★★"
@@ -54,6 +57,7 @@
             android:layout_marginTop="8dp"/>
 
         <TextView
+            android:id="@+id/tvComment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sophia is an exceptional tutor..."
