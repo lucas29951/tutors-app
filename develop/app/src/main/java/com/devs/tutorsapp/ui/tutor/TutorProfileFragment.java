@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +18,7 @@ import android.widget.TextView;
 
 import com.devs.tutorsapp.R;
 import com.devs.tutorsapp.ui.clase.ReservaClaseFragment;
+import com.devs.tutorsapp.ui.resena.adapter.ResenaAdapter;
 import com.devs.tutorsapp.ui.viewmodel.TutorViewModel;
 
 /**
@@ -36,6 +39,8 @@ public class TutorProfileFragment extends Fragment {
     private TextView tvTutorName, tvTutorDescription, tvTutorPrice;
     private Button btnRequestClass, btnBackToTutors;
     private TutorViewModel tutorViewModel;
+    private TextView tvPromedio, tvCantidad, tvStars;
+    private RecyclerView recyclerResenas;
     private int tutorId;
 
     public TutorProfileFragment() {
@@ -78,6 +83,10 @@ public class TutorProfileFragment extends Fragment {
         tvTutorDescription = view.findViewById(R.id.tvTutorDescription);
         tvTutorPrice = view.findViewById(R.id.tvTutorPrice);
         btnRequestClass = view.findViewById(R.id.btnRequestClass);
+        recyclerResenas = view.findViewById(R.id.recyclerReviews);
+        tvStars = view.findViewById(R.id.tvStarsRating);
+        tvCantidad = view.findViewById(R.id.tvCantReviews);
+        tvPromedio = view.findViewById(R.id.tvPromRev);
 
         tutorViewModel = new ViewModelProvider(this).get(TutorViewModel.class);
 
@@ -91,6 +100,28 @@ public class TutorProfileFragment extends Fragment {
                 tvTutorDescription.setText(tutor.getDescripcion());
                 tvTutorPrice.setText("$ " + tutor.getPrecio() + "/h");
             }
+        });
+
+        ResenaAdapter resenaAdapter = new ResenaAdapter();
+
+        recyclerResenas.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerResenas.setAdapter(resenaAdapter);
+
+        tutorViewModel.getReviews(tutorId).observe(getViewLifecycleOwner(), tutores -> {
+            Log.d("devtest", "Cantidad de reseñas encontradas: " + tutores.size());
+            resenaAdapter.setData(tutores);
+        });
+
+        tutorViewModel.getRating(tutorId).observe(getViewLifecycleOwner(), avg -> {
+            if (avg != null) {
+                Log.d("devtest", "Promedio de reseñas obtenido: " + avg);
+                tvPromedio.setText(String.format("%.1f", avg));
+            }
+        });
+
+        tutorViewModel.getCantidadResenas(tutorId).observe(getViewLifecycleOwner(), cant -> {
+            Log.d("devtest", "Cantidad de reseñas obtenida: " + cant);
+            tvCantidad.setText(cant + " reseñas");
         });
 
         btnRequestClass.setOnClickListener(v -> {
