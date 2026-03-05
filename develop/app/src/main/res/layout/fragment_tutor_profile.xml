@@ -124,6 +124,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tvPromRev"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="4.8"
@@ -131,12 +132,14 @@
                         android:textStyle="bold"/>
 
                     <TextView
+                        android:id="@+id/tvStarsRating"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="★★★★★"
                         android:textColor="#FFD54F"/>
 
                     <TextView
+                        android:id="@+id/tvCantReviews"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="125 reviews"
@@ -161,8 +164,12 @@
 
             </LinearLayout>
 
-            <include layout="@layout/item_review"/>
-            <include layout="@layout/item_review"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerReviews"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:layout_marginTop="12dp"/>
 
             <Space
                 android:layout_width="match_parent"
