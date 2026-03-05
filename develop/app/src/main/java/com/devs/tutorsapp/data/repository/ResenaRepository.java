@@ -2,6 +2,8 @@ package com.devs.tutorsapp.data.repository;
 
 import android.content.Context;
 
+import androidx.lifecycle.LiveData;
+
 import com.devs.tutorsapp.data.local.dao.ResenaDao;
 import com.devs.tutorsapp.data.local.database.AppDatabase;
 import com.devs.tutorsapp.data.local.entity.ResenaEntity;
@@ -30,5 +32,17 @@ public class ResenaRepository {
             List<ResenaEntity> lista = (resenaDao.getResenasByTutorId(tutorId)).getValue();
             callback.onSuccess(lista);
         });
+    }
+
+    public LiveData<List<ResenaEntity>> getReviewsByTutor(int id) {
+        return resenaDao.getResenasByTutor(id);
+    }
+
+    public LiveData<Float> getRatingPromedio(int id) {
+        return resenaDao.getRatingPromedio(id);
+    }
+
+    public LiveData<Integer> getCantidadResenas(int id) {
+        return resenaDao.getCantidadResenas(id);
     }
 }
