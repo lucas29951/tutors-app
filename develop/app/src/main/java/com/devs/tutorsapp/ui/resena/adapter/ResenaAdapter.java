@@ -10,15 +10,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.devs.tutorsapp.R;
 import com.devs.tutorsapp.data.local.entity.ResenaEntity;
+import com.devs.tutorsapp.data.model.ResenaDetalle;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ResenaAdapter extends RecyclerView.Adapter<ResenaAdapter.ViewHolder> {
 
-    private List<ResenaEntity> list = new ArrayList<>();
+    private List<ResenaDetalle> list = new ArrayList<>();
 
-    public void setData(List<ResenaEntity> data) {
+    public void setData(List<ResenaDetalle> data) {
         list = data;
         notifyDataSetChanged();
     }
@@ -32,13 +33,13 @@ public class ResenaAdapter extends RecyclerView.Adapter<ResenaAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ResenaEntity item = list.get(position);
+        ResenaDetalle item = list.get(position);
 
-        holder.tvNomAlu.setText("Alumno ID: "+ item.getAlumno_id());
+        holder.tvNomAlu.setText(item.getAlumnoNombre() + " " + item.getAlumnoApellido());
         holder.tvDateRev.setText(item.getFecha());
         holder.tvComment.setText(item.getComentario());
 
-        holder.tvProm.setText(getStars((int) item.getPuntuacion()));
+        holder.tvProm.setText(item.getPuntuacion() + " " + getStars((int) item.getPuntuacion()));
     }
 
     @Override
