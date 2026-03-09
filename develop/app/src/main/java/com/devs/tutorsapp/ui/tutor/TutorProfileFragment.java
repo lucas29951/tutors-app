@@ -108,19 +108,16 @@ public class TutorProfileFragment extends Fragment {
         recyclerResenas.setAdapter(resenaAdapter);
 
         tutorViewModel.getReviews(tutorId).observe(getViewLifecycleOwner(), tutores -> {
-            Log.d("devtest", "Cantidad de reseñas encontradas: " + tutores.size());
             resenaAdapter.setData(tutores);
         });
 
         tutorViewModel.getRating(tutorId).observe(getViewLifecycleOwner(), avg -> {
             if (avg != null) {
-                Log.d("devtest", "Promedio de reseñas obtenido: " + avg);
                 tvPromedio.setText(String.format("%.1f", avg));
             }
         });
 
         tutorViewModel.getCantidadResenas(tutorId).observe(getViewLifecycleOwner(), cant -> {
-            Log.d("devtest", "Cantidad de reseñas obtenida: " + cant);
             tvCantidad.setText(cant + " reseñas");
         });
 
