@@ -11,9 +11,12 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.devs.tutorsapp.R;
 import com.devs.tutorsapp.data.model.Tutor;
@@ -38,6 +41,7 @@ public class TutorFragment extends Fragment {
     private TutorAdapter adapter;
     private List<Tutor> tutorList;
     private TutorViewModel tutorViewModel;
+    private EditText etSearch;
 
     public TutorFragment() {
         // Required empty public constructor
@@ -77,6 +81,7 @@ public class TutorFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_tutor, container, false);
 
+        etSearch = view.findViewById(R.id.editSearch);
         recyclerView = view.findViewById(R.id.recyclerTutores);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -98,6 +103,33 @@ public class TutorFragment extends Fragment {
         tutorViewModel.getAllTutores().observe(getViewLifecycleOwner(), tutores -> {
             if (tutores != null) {
                 adapter.setTutorList(tutores);
+            }
+        });
+
+        etSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String query = s.toString();
+
+                if (query.isEmpty()) {
+                    tutorViewModel.getAllTutores().observe(getViewLifecycleOwner(), tutores -> {
+                        adapter.setTutorList(tutores);
+                    });
+                } else {
+                    tutorViewModel.searchTutors(query).observe(getViewLifecycleOwner(), tutors -> {
+                        adapter.setTutorList(tutors);
+                    });
+                }
             }
         });
 
