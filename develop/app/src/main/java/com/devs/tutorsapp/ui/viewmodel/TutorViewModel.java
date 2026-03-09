@@ -11,6 +11,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.devs.tutorsapp.data.local.entity.ResenaEntity;
 import com.devs.tutorsapp.data.local.entity.TutorEntity;
 import com.devs.tutorsapp.data.model.ResenaDetalle;
+import com.devs.tutorsapp.data.model.Tutor;
 import com.devs.tutorsapp.data.repository.RepositoryCallback;
 import com.devs.tutorsapp.data.repository.ResenaRepository;
 import com.devs.tutorsapp.data.repository.TutorRepository;
@@ -71,5 +72,9 @@ public class TutorViewModel extends AndroidViewModel {
 
     public LiveData<List<ResenaDetalle>> getResenas(int id) {
         return resenaRepository.getReviews(id);
+    }
+
+    public LiveData<List<TutorEntity>> searchTutors(String query) {
+        return repository.searchTutores(query);
     }
 }
