@@ -53,7 +53,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="★★★★★"
-            android:textColor="#FFD54F"
             android:layout_marginTop="8dp"/>
 
         <TextView
@@ -62,14 +61,6 @@
             android:layout_height="wrap_content"
             android:text="Sophia is an exceptional tutor..."
             android:layout_marginTop="6dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="👍 12    👎 1"
-            android:textColor="#90A4AE"
-            android:layout_marginTop="8dp"
-            android:textSize="12sp"/>
 
     </LinearLayout>
 
