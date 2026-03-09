@@ -107,13 +107,23 @@ public class TutorProfileFragment extends Fragment {
         recyclerResenas.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerResenas.setAdapter(resenaAdapter);
 
-        tutorViewModel.getReviews(tutorId).observe(getViewLifecycleOwner(), tutores -> {
+        tutorViewModel.getResenas(tutorId).observe(getViewLifecycleOwner(), tutores -> {
             resenaAdapter.setData(tutores);
         });
 
         tutorViewModel.getRating(tutorId).observe(getViewLifecycleOwner(), avg -> {
             if (avg != null) {
                 tvPromedio.setText(String.format("%.1f", avg));
+
+                if (avg <= 0) {
+                    tvStars.setText("★");
+                } else {
+                    StringBuilder stars = new StringBuilder();
+                    for (int i = 0; i < avg; i++) {
+                        stars.append("★");
+                    }
+                    tvStars.setText(stars.toString());
+                }
             }
         });
 
