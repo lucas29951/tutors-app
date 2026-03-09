@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData;
 import com.devs.tutorsapp.data.local.dao.ResenaDao;
 import com.devs.tutorsapp.data.local.database.AppDatabase;
 import com.devs.tutorsapp.data.local.entity.ResenaEntity;
+import com.devs.tutorsapp.data.model.ResenaDetalle;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -44,5 +45,9 @@ public class ResenaRepository {
 
     public LiveData<Integer> getCantidadResenas(int id) {
         return resenaDao.getCantidadResenas(id);
+    }
+
+    public LiveData<List<ResenaDetalle>> getReviews(int tutor_id) {
+        return resenaDao.getReviewsByTutor(tutor_id);
     }
 }
