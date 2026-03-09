@@ -42,4 +42,6 @@ public interface TutorDao {
             "WHERE tm.tutor_id = :tutorId")
     LiveData<List<MateriaEntity>> getMateriasByTutor(int tutorId);
 
+    @Query("SELECT * FROM tutores WHERE nombre LIKE '%' || :query || '%' OR apellido LIKE '%' || :query || '%'")
+    LiveData<List<TutorEntity>> searchTutors(String query);
 }
