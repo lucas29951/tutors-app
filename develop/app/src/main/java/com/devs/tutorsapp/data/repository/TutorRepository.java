@@ -52,4 +52,7 @@ public class TutorRepository {
         return tutorDao.getMateriasByTutor(id);
     }
 
+    public LiveData<List<TutorEntity>> searchTutores(String query) {
+        return tutorDao.searchTutors(query);
+    }
 }
