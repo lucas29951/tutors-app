@@ -3,6 +3,8 @@ package com.devs.tutorsapp.data.local.dao;
 import androidx.lifecycle.LiveData;
 import java.util.List;
 import com.devs.tutorsapp.data.local.entity.ResenaEntity;
+import com.devs.tutorsapp.data.model.ResenaDetalle;
+
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
@@ -38,5 +40,12 @@ public interface ResenaDao {
 
     @Query("SELECT COUNT(*) FROM resenas WHERE tutor_id = :tutor_id")
     LiveData<Integer> getCantidadResenas(int tutor_id);
+
+    @Query("SELECT r.*, a.nombre AS alumnoNombre, a.apellido AS alumnoApellido " +
+            "FROM resenas r " +
+            "JOIN alumnos a ON r.alumno_id = a.alumno_id " +
+            "WHERE r.tutor_id = :tutor_id " +
+            "ORDER BY r.tutor_id DESC")
+    LiveData<List<ResenaDetalle>> getReviewsByTutor(int tutor_id);
 
 }
