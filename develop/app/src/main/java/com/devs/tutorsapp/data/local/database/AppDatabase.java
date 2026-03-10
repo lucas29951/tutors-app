@@ -91,6 +91,7 @@ public abstract class AppDatabase extends RoomDatabase {
         ClaseDao claseDao = database.claseDao();
         DisponibilidadDao disponibilidadDao = database.disponibilidadDao();
         TutorMateriaDao tutorMateriaDao = database.tutorMateriaDao();
+        ResenaDao resenaDao = database.resenaDao();
 
         android.util.Log.d("devtest", "Cargando materias...");
 
@@ -236,6 +237,23 @@ public abstract class AppDatabase extends RoomDatabase {
         tutorMateriaDao.insertTutorMateria(new TutorMateriaEntity(7, 9));
         tutorMateriaDao.insertTutorMateria(new TutorMateriaEntity(1, 5));
         tutorMateriaDao.insertTutorMateria(new TutorMateriaEntity(12, 8));
+
+        android.util.Log.d("devtest", "Cargando reseñas...");
+
+        resenaDao.insertResena(new ResenaEntity(3, 2, 4, "Muy bueno explicando", "2024-07-12"));
+        resenaDao.insertResena(new ResenaEntity(5, 1, 3, "Recomendable", "2025-11-20"));
+        resenaDao.insertResena(new ResenaEntity(2, 6, 1, "No lo recomiendo", "2025-06-17"));
+        resenaDao.insertResena(new ResenaEntity(1, 4, 2, "Prefiero otro tutor", "2024-10-01"));
+        resenaDao.insertResena(new ResenaEntity(4, 8, 5, "Excelentes clases", "2023-02-23"));
+        resenaDao.insertResena(new ResenaEntity(3, 10, 5, "El mejor tutor que tuve", "2022-08-30"));
+        resenaDao.insertResena(new ResenaEntity(1, 9, 5, "100% recomendado", "2021-12-15"));
+        resenaDao.insertResena(new ResenaEntity(1, 3, 4, "Es mu bueno y puntual", "2023-09-02"));
+        resenaDao.insertResena(new ResenaEntity(4, 1, 3, "Podria ser mejor", "2025-03-10"));
+        resenaDao.insertResena(new ResenaEntity(5, 5, 2, "Bastantes dudas", "2026-04-21"));
+        resenaDao.insertResena(new ResenaEntity(2, 8, 1, "El peor que tuve hasta ahora", "2021-10-14"));
+        resenaDao.insertResena(new ResenaEntity(3, 7, 3, "Pasable, me quede con algunas dudas", "2020-11-07"));
+        resenaDao.insertResena(new ResenaEntity(5, 6, 2, "No me gusto mucho como explica", "2021-06-13"));
+        resenaDao.insertResena(new ResenaEntity(4, 14, 4, "Muy bueno, lo recomiendo", "2022-06-03"));
     }
 
 }
