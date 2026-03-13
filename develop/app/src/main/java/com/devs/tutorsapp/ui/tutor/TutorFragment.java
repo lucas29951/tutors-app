@@ -19,9 +19,11 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.devs.tutorsapp.R;
+import com.devs.tutorsapp.data.local.entity.TutorEntity;
 import com.devs.tutorsapp.data.model.Tutor;
 import com.devs.tutorsapp.ui.tutor.adapter.TutorAdapter;
 import com.devs.tutorsapp.ui.viewmodel.TutorViewModel;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +44,7 @@ public class TutorFragment extends Fragment {
     private List<Tutor> tutorList;
     private TutorViewModel tutorViewModel;
     private EditText etSearch;
+    private MaterialButton btnFilters;
 
     public TutorFragment() {
         // Required empty public constructor
@@ -82,6 +85,7 @@ public class TutorFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_tutor, container, false);
 
         etSearch = view.findViewById(R.id.editSearch);
+        btnFilters = view.findViewById(R.id.btnFilters);
         recyclerView = view.findViewById(R.id.recyclerTutores);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -131,6 +135,24 @@ public class TutorFragment extends Fragment {
                     });
                 }
             }
+        });
+
+        btnFilters.setOnClickListener(v -> {
+            FiltersBottomSheet sheet = new FiltersBottomSheet((price, rating, available) -> {
+                tutorViewModel.getAllTutores().observe(getViewLifecycleOwner(), tutores -> {
+                    if (tutores != null) {
+                        List<TutorEntity> filtered = new ArrayList<>();
+
+                        for (TutorEntity tutor : tutores) {
+                            if (tutor.getPrecio() <= price || tutor.getRating() >= rating) {
+                                filtered.add(tutor);
+                            }
+                        }
+                        adapter.setTutorList(filtered);
+                    }
+                });
+            });
+            sheet.show(getParentFragmentManager(), "filters");
         });
 
         return view;
