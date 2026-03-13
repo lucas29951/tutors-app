@@ -124,61 +124,61 @@ public abstract class AppDatabase extends RoomDatabase {
                 "Profesora de Física con amplia experiencia. Explicaciones claras y resolución paso a paso de problemas complejos.",
                 "",
                 "Av. Belgrano 789, Rosario",
-                60, 7));
+                60, 2));
 
         tutorDao.insertTutor(new TutorEntity("Javier", "López", "javier.lopez@gmail.com", "9999999999",
                 "Tutor de Programación (Java y Python). Ideal para principiantes y estudiantes universitarios.",
                 "",
                 "Calle Mitre 321, Mendoza",
-                32, 8));
+                32, 3));
 
         tutorDao.insertTutor(new TutorEntity("Ana", "Martínez", "ana.martinez@gmail.com", "7777777777",
                 "Docente de Inglés con enfoque conversacional. Mejora tu speaking y comprensión auditiva.",
                 "",
                 "Av. Colón 654, Córdoba",
-                42, 7));
+                42, 2));
 
         tutorDao.insertTutor(new TutorEntity("Pedro", "Sánchez", "pedro.sanchez@gmail.com", "4444444444",
                 "Profesor de Historia apasionado. Clases didácticas para secundaria y preparación de exámenes.",
                 "",
                 "Calle Sarmiento 987, La Plata",
-                25, 6));
+                25, 1));
 
         tutorDao.insertTutor(new TutorEntity("Lucía", "Fernández", "lucia.fernandez@gmail.com", "2222222222",
                 "Especialista en Química. Explica conceptos difíciles de forma sencilla y práctica.",
                 "",
                 "Av. Alem 741, Bahía Blanca",
-                21, 7));
+                21, 2));
 
         tutorDao.insertTutor(new TutorEntity("Diego", "Ramírez", "diego.ramirez@gmail.com", "8888888888",
                 "Tutor de Matemáticas avanzadas. Ideal para ingresos universitarios y materias complejas.",
                 "",
                 "Calle Urquiza 852, Tucumán",
-                34, 7));
+                34, 2));
 
         tutorDao.insertTutor(new TutorEntity("Sofía", "Torres", "sofia.torres@gmail.com", "6666666666",
                 "Profesora de Biología. Clases claras con ejemplos prácticos y apoyo para exámenes.",
                 "",
                 "Av. San Juan 963, Buenos Aires",
-                27, 6));
+                27, 5));
 
         tutorDao.insertTutor(new TutorEntity("Martín", "Castro", "martin.castro@gmail.com", "3333333333",
                 "Docente de Economía y Contabilidad. Explicaciones simples y aplicadas a la vida real.",
                 "",
                 "Calle España 159, Salta",
-                30, 8));
+                30, 3));
 
         tutorDao.insertTutor(new TutorEntity("Valentina", "Ruiz", "valentina.ruiz@gmail.com", "1111111111",
                 "Estudiante avanzada que brinda apoyo en materias básicas. Ideal para nivel primario y secundario.",
                 "",
                 "Av. Libertad 753, Mar del Plata",
-                13, 7));
+                13, 2));
 
         tutorDao.insertTutor(new TutorEntity("Andrés", "Morales", "andres.morales@gmail.com", "0000000000",
                 "Tutor de Geografía. Clases dinámicas con mapas y ejemplos prácticos.",
                 "",
                 "Calle Pellegrini 246, Santa Fe",
-                15, 6));
+                15, 3));
 
         tutorDao.insertTutor(new TutorEntity("Camila", "Herrera", "camila.herrera@gmail.com", "9453299999",
                 "Profesora de Inglés enfocada en gramática y escritura. Ideal para exámenes internacionales.",
@@ -190,13 +190,13 @@ public abstract class AppDatabase extends RoomDatabase {
                 "Tutor de Programación web (HTML, CSS, JS). Aprende creando proyectos reales.",
                 "",
                 "Calle Lavalle 369, Buenos Aires",
-                36, 7));
+                36, 4));
 
         tutorDao.insertTutor(new TutorEntity("Paula", "Rojas", "paula.rojas@gmail.com", "8539605098",
                 "Profesora de Psicología. Clases claras y acompañamiento en trabajos prácticos.",
                 "",
                 "Av. Moreno 147, Córdoba",
-                12, 6));
+                12, 1));
 
         android.util.Log.d("devtest", "Cargando Alumnos...");
 
